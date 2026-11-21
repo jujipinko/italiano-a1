@@ -1,0 +1,364 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="bg"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EEF1EA" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0F1713" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Италиански A1 – флашкарти</title><meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#EEF1EA;--surf:#fff;--ink:#1B2B22;--mute:#5B6B61;--line:#D3DBD0;--g:#1F6B4A;--gi:#fff;--r:#C23B31;--back:#17382B;--backink:#F4F1E6;--backmute:#A9C2B3;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1713;--surf:#18231D;--ink:#E8EFE9;--mute:#93A598;--line:#2A3A31;--g:#4CB383;--gi:#0B1A12;--r:#FF8076;--back:#E3EDDD;--backink:#12251B;--backmute:#4C6656;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1713;--surf:#18231D;--ink:#E8EFE9;--mute:#93A598;--line:#2A3A31;--g:#4CB383;--gi:#0B1A12;--r:#FF8076;--back:#E3EDDD;--backink:#12251B;--backmute:#4C6656;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+button,select,input{font:inherit;color:inherit}
+.app{height:100%;max-width:520px;margin:0 auto;display:flex;flex-direction:column;padding-block:10px 14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+h1{font-size:18px;margin:0;font-weight:750}
+.sub{font-size:12px;color:var(--mute)}
+.ib{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surf);display:grid;place-items:center;cursor:pointer}
+.prog{margin:10px 0 6px;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--g);transition:width .25s}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mute)}
+.lnk{background:none;border:0;padding:8px 6px;color:var(--mute);cursor:pointer;min-width:64px;text-align:left}
+.stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;perspective:1200px;padding:6px 0 10px}
+.card{width:100%;height:100%;max-height:500px;position:relative;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:pointer}
+.in{position:absolute;inset:0;transition:transform .45s cubic-bezier(.3,.7,.2,1);transform-style:preserve-3d}
+.card.fl .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:44px 22px 40px;gap:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:auto}
+.front,.msg{background:var(--surf);border:1.5px solid var(--line)}
+.rear{background:var(--back);color:var(--backink);transform:rotateY(180deg)}
+.w{font-size:clamp(28px,9vw,44px);font-weight:750;line-height:1.15;overflow-wrap:anywhere}
+.w.it{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:700}
+.ex{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(18px,5vw,22px);opacity:.9}
+.tag{position:absolute;top:16px;left:20px;font-size:12px;color:var(--mute)}
+.rear .tag{color:var(--backmute)}
+.hint{position:absolute;bottom:14px;left:0;right:0;font-size:12px;color:var(--mute)}
+.spk{width:44px;height:44px;border-radius:50%;border:1.5px solid currentColor;background:none;display:grid;place-items:center;cursor:pointer;flex:none;opacity:.8}
+.nospeech .spk{display:none}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{min-height:58px;border-radius:16px;font-weight:700;font-size:17px;cursor:pointer}
+.no{background:var(--surf);color:var(--r);border:2px solid var(--r)}
+.yes{background:var(--g);color:var(--gi);border:2px solid var(--g)}
+.tip{text-align:center;font-size:12px;color:var(--mute);margin-top:8px}
+.ov{position:fixed;inset:0;background:#0007;display:none;align-items:flex-end;justify-content:center}
+.ov.on{display:flex}
+.sh{background:var(--surf);width:100%;max-width:520px;max-height:90%;overflow:auto;border-radius:22px 22px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.sh h2{margin:0 0 12px;font-size:18px}
+.grp{margin:0 0 14px}.grp label,summary{display:block;font-size:13px;color:var(--mute);margin-bottom:6px}
+summary{cursor:pointer;padding:6px 0}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.seg button{flex:1;border:0;background:none;padding:11px 4px;cursor:pointer;font-size:14px}
+.seg button.on{background:var(--g);color:var(--gi);font-weight:700}
+select,input{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);margin-bottom:8px}
+.pb{width:100%;min-height:48px;border-radius:12px;border:1.5px solid var(--g);background:var(--g);color:var(--gi);font-weight:700;cursor:pointer;margin-top:4px}
+.pb.sec{background:none;color:var(--ink);border-color:var(--line)}
+.msg .w{font-size:30px}.msg p{margin:0;color:var(--mute)}
+button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visible{outline:3px solid var(--g);outline-offset:2px}
+.og{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:8px}
+.opt{min-height:56px;padding:8px 10px;border-radius:14px;border:2px solid var(--line);background:var(--surf);color:var(--ink);font-size:16px;font-weight:600;line-height:1.2;overflow-wrap:anywhere;cursor:pointer}
+.opt:disabled{color:var(--ink)}
+.opt.good{border-color:var(--g);background:var(--g);color:var(--gi)}
+.opt.bad{border-color:var(--r);color:var(--r)}
+#nx{width:100%}
+[hidden]{display:none!important}
+.ans{display:flex;flex-direction:column;gap:8px}
+.ans input{margin:0;font-size:18px;padding:13px 14px}
+.ans .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fb{min-height:20px;font-size:14px;font-weight:700;text-align:center}.fb.ok{color:var(--g)}.fb.bad{color:var(--r)}
+.opt{min-height:60px;font-size:18px}
+.face{justify-content:safe center}.rear{padding-top:48px}
+.opt mark,.why mark,.fb mark{background:#ffd966;color:#1b2b22;border-radius:4px;padding:0 2px}
+.opt.bad{animation:sh .35s}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.pf{min-height:22px;font-size:14px;font-weight:700;text-align:center;margin:0 0 8px}.pf.bad{color:var(--r)}.pf.ok{color:var(--g)}
+.why{width:100%;border:1.5px solid currentColor;border-radius:12px;padding:10px 12px;font-size:14px;text-align:left;line-height:1.45}
+.why input{width:100%;margin:8px 0 0;background:transparent;border:1.5px solid currentColor;color:inherit;font-size:16px}
+.why input.okk{border-color:#37b26c;box-shadow:0 0 0 2px #37b26c66}
+.syn{font-size:14px;opacity:.75;line-height:1.3}
+.nojs{max-width:420px;margin:15vh auto 0;padding:20px;border:1.5px solid var(--g);border-radius:18px;background:var(--surf);color:var(--ink);font-size:16px;line-height:1.5}.nojs b{display:block;font-size:20px;margin-bottom:8px}
+.ctag{position:absolute;top:16px;right:20px;max-width:58%;font-size:12px;color:var(--mute);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rear .ctag{color:var(--backmute)}
+.new{background:#ffd966;color:#1b2b22;border-radius:6px;padding:0 5px;font-weight:700}
+.news{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;margin-top:8px;padding:10px 12px;border:1.5px solid var(--g);border-radius:14px;background:var(--surf);font-size:13px;line-height:1.4}
+.news .lnk{min-width:0;padding:2px 4px;color:var(--g);font-weight:700}
+.fb b{color:var(--ink)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(480px,calc(100% - 32px));background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.4;box-shadow:0 8px 24px #0004;z-index:5}
+.fm{min-height:18px;font-size:13px;font-weight:600;margin-top:6px}.fm.ok{color:var(--g)}.fm.bad{color:var(--r)}
+.pb.warn{border-color:var(--r);color:var(--r);background:none}
+@media(max-height:760px){.face{gap:8px;padding:36px 16px 14px}.rear{padding-top:38px}.tag,.ctag{top:12px}.spk{width:38px;height:38px}
+ .opt{min-height:50px}.btn{min-height:50px}.why{padding:8px 10px;font-size:13px}.why input{padding:8px 10px}}
+@media(max-height:620px){.w{font-size:26px}.ex{font-size:16px}.opt{min-height:44px;font-size:16px}}
+@media(prefers-reduced-motion:reduce){.in,.prog i{transition:none}.opt.bad{animation:none}}
+</style></head><body>
+<noscript><style>.app{display:none!important}</style><div class="nojs"><b>Тук картите не могат да работят</b>Този преглед (например във Viber или „Файлове“ на iPhone) спира програмата в страницата.<br><br>Отвори линка към картите в Safari – там работят изцяло, с произношение.</div></noscript>
+<div class="app">
+ <div class="top"><div><h1>Италиански A1</h1><div class="sub">Nuovissimo progetto italiano · A1</div></div>
+ <button class="ib" id="gear" aria-label="Настройки"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h9m4 0h3M4 12h3m4 0h9M4 17h11m4 0h1"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17" r="2"/></svg></button></div>
+ <div class="news" id="news" role="status" hidden><div id="newsTxt"></div><button class="lnk" id="newsOk">Добре</button></div>
+ <div class="prog"><i id="bar"></i></div>
+ <div class="meta"><button class="lnk" id="prev">‹ Назад</button><span id="cnt"></span><span id="kn" style="min-width:64px;text-align:right"></span></div>
+ <div class="stage"><div class="card" id="card" tabindex="0" aria-label="Карта – докосни, за да я обърнеш"></div></div>
+ <div class="actions"><button class="btn no" id="no">Още уча</button><button class="btn yes" id="yes">Знам го</button></div>
+ <div class="ans" id="ans" hidden><input id="ai" placeholder="Напиши отговора…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><div class="fb" id="fb"></div><div class="row"><button class="btn no" id="sk">Не знам</button><button class="btn yes" id="chk">Провери</button></div></div>
+ <div id="opts" hidden></div>
+ <div class="tip" id="tip"></div>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+<div class="ov" id="ov"><div class="sh">
+ <h2>Настройки</h2>
+ <div class="grp"><label>Посока</label><div class="seg" data-k="dir"><button data-v="bg">БГ → IT</button><button data-v="it">IT → БГ</button></div></div>
+ <div class="grp"><label>Карти</label><div class="seg" data-k="mode"><button data-v="all">Всички</button><button data-v="todo">Още уча</button><button data-v="known">Знам</button></div></div>
+ <div class="grp"><label>Подредба</label><div class="seg" data-k="shuf"><button data-v="0">По ред</button><button data-v="1">Разбъркано</button></div></div>
+ <div class="grp"><label>Как отбелязвам „знам“</label><div class="seg" data-k="check"><button data-v="self">Сама</button><button data-v="pick">Избирам</button><button data-v="type">Пиша</button></div></div>
+ <div class="grp"><label for="cat">Тема</label><select id="cat"></select></div>
+ <div class="grp"><label for="q">Търсене</label><input id="q" type="search" placeholder="дума на италиански или български" autocomplete="off"></div>
+ <details class="grp"><summary>Добави своя дума</summary>
+  <input id="n1" placeholder="Италиански (напр. la scuola)"><input id="n2" placeholder="Български (напр. училище)"><input id="n3" placeholder="Пример (по желание)">
+  <button class="pb sec" id="add">Добави</button><div class="fm" id="addmsg" role="status"></div></details>
+ <div class="grp"><label>Цветове</label><div class="seg" data-k="theme"><button data-v="auto">Авто</button><button data-v="light">Светла</button><button data-v="dark">Тъмна</button></div></div>
+ <div class="grp"><label>Произношение</label><div class="sub" id="vinfo" style="margin:0 0 8px"></div><button class="pb sec" id="vtest">Пробвай гласа</button></div>
+ <button class="pb" id="close">Готово</button>
+ <button class="pb sec" id="reset" style="margin-top:10px">Изчисти напредъка</button>
+</div></div>
+<script>
+const D=[["la musica","музика","Mi piace la musica.",9],["l’arte","изкуство","Mi piace l’arte.",9],["gli spaghetti","спагети","Mangio gli spaghetti.",6],["la moda","мода","La moda italiana è famosa.",9],["l’espresso","еспресо","Bevo un espresso.",6],["l’opera","опера","Mi piace l’opera.",9],["il cappuccino","капучино","Bevo un cappuccino.",6],["il cinema","кино","Andiamo al cinema.",9],["il museo","музей","Visito il museo.",9],["il ristorante","ресторант","Mangiamo al ristorante.",6],["il centro","център","Abito in centro.",5],["la città","град","Roma è una città.",5],["la casa","къща","La casa è grande.",7],["l’ufficio","офис","Lavoro in ufficio.",8],["la piazza","площад","Ci vediamo in piazza.",5],["la via","улица","Abito in questa via.",5],["la fermata","спирка","Aspetto alla fermata.",5],["la macchina","кола","La macchina è nuova.",5],["l’autobus","автобус","Aspetto l’autobus.",5],["il treno","влак","Il treno arriva alle otto.",5],["la metro","метро","Aspetto la metro.",5],["il taxi","такси","Aspetto un taxi.",5],["l’aereo","самолет","L’aereo parte domani.",5],["lo sport","спорт","Mi piace lo sport.",9],["il calcio","футбол","Gioco a calcio.",9],["la chiave","ключ","Questa è la chiave.",7],["le chiavi","ключове","Dove sono le chiavi?",14],["lo zaino","раница","Questo è il mio zaino.",7],["il panino","сандвич","Mangio un panino.",6],["gli stivali","ботуши","Gli stivali sono neri.",7],["la pagina","страница","Leggo la pagina.",8],["le pagine","страници","Leggo due pagine.",14],["lo studente","студент / ученик","Lo studente studia.",8],["la studentessa","студентка / ученичка","La studentessa è italiana.",8],["gli studenti","студенти / ученици","Gli studenti parlano italiano.",14],["il gelato","сладолед","Mangio un gelato.",6],["i gelati","сладоледи","I gelati sono buoni.",14],["la finestra","прозорец","Apro la finestra.",7],["le finestre","прозорци","Le finestre sono grandi.",14],["il pesce","риба","Mangio il pesce.",6],["i pesci","риби","I pesci sono piccoli.",14],["la notte","нощ","È notte.",4],["la borsa","чанта","La borsa è nuova.",7],["le borse","чанти","Le borse sono belle.",14],["il ragazzo","момче","Il ragazzo è simpatico.",2],["la ragazza","момиче","La ragazza è simpatica.",2],["i ragazzi","момчета / младежи","I ragazzi studiano.",14],["le ragazze","момичета","Le ragazze parlano.",14],["l’albero","дърво","L’albero è alto.",7],["gli alberi","дървета","Gli alberi sono grandi.",14],["l’isola","остров","L’isola è bella.",5],["le isole","острови","Le isole sono belle.",14],["il libro","книга","Leggo un libro.",8],["i libri","книги","I libri sono interessanti.",14],["il vestito","рокля / костюм / дреха","Il vestito è bello.",7],["i vestiti","дрехи","I vestiti sono nuovi.",14],["lo zio","чичо / вуйчо","Mio zio abita a Roma.",2],["la zia","леля","Mia zia è italiana.",2],["i numeri","числата","Scrivo i numeri.",3],["la foto","снимка","Guardo la foto.",7],["italiano","италианец / италиански","Marco è italiano.",2],["italiana","италианка / италианска","Anna è italiana.",2],["gli americani","американци","Gli americani parlano inglese.",2],["la brasiliana","бразилка","La brasiliana si chiama Maria.",2],["il marocchino","мароканец","Il marocchino abita a Roma.",2],["gli argentini","аржентинци","Gli argentini sono simpatici.",2],["le spagnole","испанки","Le spagnole parlano spagnolo.",2],["le tedesche","германки","Le tedesche studiano italiano.",2],["lo straniero","чужденец","Lo straniero parla italiano.",2],["la straniera","чужденка","La straniera è gentile.",2],["il collega","колега","Il collega è gentile.",2],["l’amico","приятел","Il mio amico è simpatico.",2],["l’amica","приятелка","La mia amica è italiana.",2],["i fratelli","братя","Ho due fratelli.",14],["il fratello","брат","Mio fratello studia.",2],["la sorella","сестра","Mia sorella lavora.",2],["il nome","име","Il mio nome è Anna.",2],["il cognome","фамилия","Qual è il tuo cognome?",2],["l’età","възраст","Qual è la tua età?",2],["il lavoro","работа","Cerco lavoro.",8],["la lingua","език","Parlo una lingua straniera.",8],["l’italiano","италиански език","Studio l’italiano.",8],["l’inglese","английски език","Parlo l’inglese.",8],["la famiglia","семейство","La mia famiglia è grande.",2],["il compagno","съученик / другар","Il mio compagno di classe è simpatico.",2],["la persona","човек","È una persona gentile.",2],["il professore","преподавател","Il professore parla.",8],["l’insegnante","учител","L’insegnante è gentile.",8],["il ragazzo alto","високото момче","Il ragazzo alto è Marco.",2],["la ragazza alta","високото момиче","La ragazza alta è Anna.",2],["uno","едно","Ho uno zaino.",3],["due","два / две","Ho due libri.",3],["tre","три","Ho tre libri.",3],["quattro","четири","Ho quattro libri.",3],["cinque","пет","Ho cinque libri.",3],["sei","шест","Ho sei libri.",3],["sette","седем","Ho sette libri.",3],["otto","осем","Ho otto libri.",3],["nove","девет","Ho nove libri.",3],["dieci","десет","Ho dieci libri.",3],["undici","единадесет","Ho undici libri.",3],["dodici","дванадесет","Ho dodici libri.",3],["tredici","тринадесет","Ho tredici libri.",3],["quattordici","четиринадесет","Ho quattordici libri.",3],["quindici","петнадесет","Ho quindici libri.",3],["sedici","шестнадесет","Ho sedici libri.",3],["diciassette","седемнадесет","Ho diciassette libri.",3],["diciotto","осемнадесет","Ho diciotto libri.",3],["diciannove","деветнадесет","Ho diciannove libri.",3],["venti","двадесет","Ho venti libri.",3],["trenta","тридесет","Ho trenta libri.",3],["oggi","днес","Oggi studio italiano.",4],["domani","утре","Domani lavoro.",4],["ieri","вчера","Ieri ero a casa.",4],["la mattina","сутринта","Studio la mattina.",4],["il pomeriggio","следобед","Lavoro il pomeriggio.",4],["la sera","вечерта","Studio la sera.",4],["la prima volta","първият път","Questa è la prima volta.",4],["l’ora","час","Che ora è?",4],["i minuti","минути","Aspetto cinque minuti.",4],["ciao","здравей / чао","Ciao, come stai?",0],["buongiorno","добро утро / добър ден","Buongiorno, Anna!",0],["buon pomeriggio","добър следобед","Buon pomeriggio a tutti!",0],["buonasera","добър вечер","Buonasera, signora!",0],["buonanotte","лека нощ","Buonanotte, Marco!",0],["arrivederci","довиждане","Arrivederci, a domani!",0],["arrivederLa","довиждане (учтиво)","ArrivederLa, signora!",0],["a presto","до скоро","Ciao, a presto!",0],["a domani","до утре","A domani, Anna!",0],["a sabato","до събота","A sabato, Marco!",0],["grazie","благодаря","Grazie, sei gentile.",0],["prego","моля / заповядайте","Prego, accomodati!",0],["scusa","извинявай","Scusa, che ora è?",0],["scusi","извинете","Scusi, dov’è la via Roma?",0],["per favore","моля","Un cappuccino, per favore.",0],["piacere","приятно ми е","Piacere, sono Anna.",0],["come stai?","как си?","Ciao, come stai?",1],["come sta?","как сте?","Buongiorno, come sta?",1],["bene","добре","Bene, grazie.",0],["molto bene","много добре","Molto bene, grazie.",0],["e tu?","а ти?","Bene, e tu?",0],["e Lei?","а Вие?","Bene, e Lei?",0],["come ti chiami?","как се казваш?","Ciao, come ti chiami?",1],["mi chiamo…","казвам се…","Mi chiamo Anna.",0],["quanti anni hai?","на колко години си?","Scusa, quanti anni hai?",1],["di dove sei?","откъде си?","Ciao, di dove sei?",1],["dove abiti?","къде живееш?","Scusa, dove abiti?",1],["sei italiano?","италианец ли си?","Marco, sei italiano?",1],["sono bulgaro","аз съм българин","Sono Marco, sono bulgaro.",0],["sono bulgara","аз съм българка","Sono Anna, sono bulgara.",0],["chiamarsi","казвам се","Mi chiamo Anna.",12],["lavorare","работя","Lavoro in ufficio.",12],["studiare","уча","Studio italiano.",12],["abitare","живея","Abito a Roma.",12],["parlare","говоря","Parlo italiano.",12],["ascoltare","слушам","Ascolto la musica.",12],["aprire","отварям","Apro la finestra.",12],["finire","завършвам","Finisco il lavoro.",12],["dormire","спя","Dormo otto ore.",12],["partire","заминавам","Parto domani.",12],["sentire","чувам / усещам","Sento la musica.",12],["capire","разбирам","Capisco l’italiano.",12],["preferire","предпочитам","Preferisco il tè.",12],["spedire","изпращам","Spedisco una lettera.",12],["mangiare","ям","Mangio una pizza.",12],["invitare","каня","Invito un amico.",12],["incontrare","срещам","Incontro un collega.",12],["aspettare","чакам","Aspetto l’autobus.",12],["arrivare","пристигам","Arrivo alle sei.",12],["conoscere","познавам","Conosco Marco.",12],["vivere","живея","Vivo a Roma.",12],["cercare","търся","Cerco le chiavi.",12],["simpatico","симпатичен","Marco è simpatico.",11],["simpatica","симпатична","Anna è simpatica.",11],["carino","сладък / мил","Il ragazzo è carino.",11],["carina","сладка / мила","La ragazza è carina.",11],["interessante","интересен / интересна","Il libro è interessante.",11],["intelligente","интелигентен / интелигентна","Anna è intelligente.",11],["gentile","любезен / любезна","Il professore è gentile.",11],["importante","важен / важна","Il lavoro è importante.",11],["difficile","труден / трудна","L’italiano è difficile.",11],["grande","голям / голяма","La casa è grande.",11],["piccolo","малък","Il gatto è piccolo.",11],["nuova","нова","La borsa è nuova.",11],["nuovo","нов","Il libro è nuovo.",11],["alto","висок","Marco è alto.",11],["basso","нисък","Marco è basso.",11],["giovane","млад","Il ragazzo è giovane.",11],["anziano","възрастен","Mio zio è anziano.",11],["bello","красив","Il museo è bello.",11],["brutto","грозен","Il vestito è brutto.",11],["allegro","весел","Marco è allegro.",11],["triste","тъжен","Marco è triste.",11],["scortese","неучтив / нелюбезен","Il collega è scortese.",11],["magro","слаб","Marco è magro.",11],["grasso","дебел","Il gatto è grasso.",11],["i capelli","коса","Anna ha i capelli neri.",10],["i capelli lunghi","дълга коса","Anna ha i capelli lunghi.",10],["i capelli corti","къса коса","Marco ha i capelli corti.",10],["i capelli neri","черна коса","Marco ha i capelli neri.",10],["gli occhi","очи","Anna ha gli occhi verdi.",10],["gli occhi verdi","зелени очи","Marco ha gli occhi verdi.",10],["gli occhi azzurri","сини очи","Anna ha gli occhi azzurri.",10],["gli occhi castani","кафяви очи","Marco ha gli occhi castani.",10],["i capelli rossi","рижа коса","Anna ha i capelli rossi.",10],["i capelli biondi","руса коса","Marco ha i capelli biondi.",10],["i capelli castani","кестенява коса","Anna ha i capelli castani.",10],["la testa","глава","Mi fa male la testa.",10],["la mano","ръка (длан)","Alzo la mano.",10],["il naso","нос","Marco ha il naso piccolo.",10],["la bocca","уста","Apro la bocca.",10],["il viso","лице","Anna ha un bel viso.",10],["la barba","брада","Marco ha la barba.",10],["la domanda","въпрос","Ho una domanda.",8],["la risposta","отговор","La risposta è facile.",8],["il messaggio","съобщение","Scrivo un messaggio.",8],["l’appuntamento","уговорена среща","Ho un appuntamento.",4],["la pizza","пица","Mangio una pizza.",6],["il sabato","всяка събота","Lavoro il sabato.",4],["alle otto","в осем часа","Arrivo alle otto.",4],["alle sei","в шест часа","Parto alle sei.",4],["a che ora?","в колко часа?","A che ora arrivi?",4],["dove?","къде?","Dove abiti?",1],["quando?","кога?","Quando parti?",1],["perché?","защо?","Perché studi italiano?",1],["chi?","кой?","Chi è Marco?",1],["che cosa?","какво?","Che cosa studi?",1],["quanto?","колко?","Quanto costa?",1],["come?","как?","Come stai?",1],["qui","тук","Sono qui.",13],["vicino","близо / близък","Abito vicino al centro.",13],["lontano","далече / далечен","La scuola è lontana.",13],["essere","съм","Maria è spagnola.",12],["avere","имам","Ho un libro nuovo.",12],["australiano","австралиец / австралийски","Bob è australiano.",2],["aperto","отворен","La finestra è aperta.",11],["chiuso","затворен","La farmacia è chiusa.",11],["rosso","червен","La macchina è rossa.",11],["moderno","модерен","Il vestito è moderno.",11],["la scuola","училище","La scuola apre alle otto.",8],["il gatto","котка","Il gatto dorme.",7],["il giornale","вестник","Leggo il giornale.",9],["la lavagna","дъска","La lavagna è nera.",8],["il figlio","син","Anna ha un figlio.",2],["zero","нула","Tre meno tre fa zero.",3],["la canzone","песен","Ascolto una canzone italiana.",9],["il caffè","кафе","Bevo un caffè.",6],["la mamma","мама","Mia mamma abita a Roma.",2],["la nonna","баба","Mia nonna è anziana.",2],["l’amore","любов","L’amore è importante.",13],["libero","свободен","Sei libero sabato?",11],["la cena","вечеря","La cena è alle otto.",6],["il corso","курс","Il corso d’italiano è bello.",8],["l’uomo","мъж / човек","L’uomo è alto.",2],["gli uomini","мъже / хора","Gli uomini sono intelligenti.",14],["la storia","история / разказ","La storia è interessante.",13],["l’idea","идея","È un’idea interessante.",13],["il dialogo","диалог","Leggo il dialogo.",8],["l’anno","година","Vivo qui da un anno.",4],["l’attore","актьор","L’attore è famoso.",2],["famoso","известен","Roma è una città famosa.",11],["dolce","сладък / мил","Jessica è una ragazza dolce.",11],["contento","доволен","Sono molto contento.",11],["pronto","готов","Sei pronto per domani?",11],["davvero","наистина","Davvero? Che bello!",13],["perfetto","перфектен / отличен","Perfetto, a domani!",11],["tutto bene","всичко е наред","Tutto bene, grazie.",0],["salve","здравейте","Salve, signora!",0],["ci vediamo","до скоро / ще се видим","Ci vediamo domani!",0],["l’inizio","начало","Buon inizio!",13],["scendere","слизам","Scendo alla fermata Duomo.",12],["già","вече","Parli già molto bene!",13],["ecco","ето","Ecco l’autobus!",13],["comunque","във всеки случай","Comunque, complimenti!",13],["complimenti","поздравления / браво","Complimenti, parli bene!",0],["il signore","господин","Buongiorno, signore!",2],["la signora","госпожа","Scusi, signora!",2],["il medico","лекар","Il medico è gentile.",2],["il bar","бар / кафене","Lavoro in un bar.",6],["la farmacia","аптека","La farmacia chiude alle sette.",5],["il giardino","градина","Il giardino è verde.",7],["la lezione","урок","La lezione finisce alle undici.",8],["la lettera","писмо / буква","Ho una lettera per te.",8],["la porta","врата","Apro la porta.",7],["il problema","проблем","Ho un problema.",13],["il film","филм","Guardo un film.",9],["il turista","турист","Il turista è americano.",2],["l’email","имейл","Spedisco un’email.",8],["il bagno","баня","Il bagno è piccolo.",7],["la cucina","кухня","La cucina è grande.",7],["guardare","гледам","Guardo la televisione.",12],["scrivere","пиша","Scrivo una lettera.",12],["leggere","чета","Leggo ogni giorno.",12],["cucinare","готвя","Marta cucina molto bene.",12],["chiudere","затварям","Chiudo la porta.",12],["rispondere","отговарям","Rispondo a tutte le domande.",12],["telefonare","звъня по телефона","Telefono a Sergio ogni giorno.",12],["tornare","връщам се","Torno a casa alle sei.",12],["cominciare","започвам","Comincio a lavorare alle nove.",12],["pulire","чистя","Pulisco il bagno.",12],["costruire","строя","Roberto costruisce una casa nuova.",12],["gli zii","чичовци / вуйчовци","Gli zii abitano a Roma.",14],["il Colosseo","Колизеумът","Visito il Colosseo.",5],["ti chiami","казваш се","Come ti chiami?",0],["si chiama","казва се","Lei si chiama Anna.",0],["venticinque","двадесет и пет","Sono le nove e venticinque.",3],["che ore sono?","колко е часът?","Scusi, che ore sono?",4],["che ora è?","колко е часът?","Scusa, che ora è?",4],["è l’una","часът е един","È l’una e venti.",4],["sono le nove","часът е девет","Sono le nove e dieci.",4],["e un quarto","и четвърт","Sono le due e un quarto.",4],["e mezza","и половина","Sono le sei e mezza.",4],["meno un quarto","без четвърт","Sono le dieci meno un quarto.",4],["meno dieci","без десет","Sono le cinque meno dieci.",4],["mezzogiorno","пладне (12 ч.)","È mezzogiorno.",4],["mezzanotte","полунощ","È mezzanotte.",4],["all’una","в един часа","Pranzo all’una.",4],["alle nove","в девет часа","La lezione inizia alle nove.",4],["a che ora inizia?","в колко часа започва?","A che ora inizia la lezione?",4],["a che ora finisce?","в колко часа свършва?","A che ora finisce la lezione?",4],["lunedì","понеделник","Lunedì lavoro.",4],["martedì","вторник","Domani è martedì.",4],["mercoledì","сряда","Oggi è mercoledì.",4],["giovedì","четвъртък","Giovedì studio italiano.",4],["venerdì","петък","Venerdì ceno al ristorante.",4],["sabato","събота","Sabato non lavoro.",4],["domenica","неделя","Ieri era domenica.",4],["il lunedì","всеки понеделник","Il lunedì lavoro.",4],["la domenica","всяка неделя","La domenica dormo molto.",4],["il giorno","ден","Che giorno è oggi?",4],["la settimana","седмица","I giorni della settimana.",4],["che giorno è oggi?","кой ден е днес?","Che giorno è oggi? Oggi è lunedì.",4],["che giorno era ieri?","кой ден беше вчера?","Che giorno era ieri? Ieri era domenica.",4],["era","беше","Ieri era domenica.",12],["iniziare","започвам","La lezione inizia alle nove.",12],["pranzare","обядвам","Pranzo all’una.",12],["cenare","вечерям","Ceno alle otto.",12]],
+// [неопределителна форма, превод, пример, определителна форма]
+IND=[["un espresso","едно еспресо","Ecco un espresso!","l’espresso"],["un’opera","една опера","Ecco un’opera!","l’opera"],["un cappuccino","едно капучино","Ecco un cappuccino!","il cappuccino"],["un cinema","едно кино","Ecco un cinema!","il cinema"],["un museo","един музей","Ecco un museo!","il museo"],["un ristorante","един ресторант","Ecco un ristorante!","il ristorante"],["una città","един град","Ecco una città!","la città"],["una casa","една къща","Ecco una casa!","la casa"],["un ufficio","един офис","Ecco un ufficio!","l’ufficio"],["una piazza","един площад","Ecco una piazza!","la piazza"],["una via","една улица","Ecco una via!","la via"],["una fermata","една спирка","Ecco una fermata!","la fermata"],["una macchina","една кола","Ecco una macchina!","la macchina"],["un autobus","един автобус","Ecco un autobus!","l’autobus"],["un treno","един влак","Ecco un treno!","il treno"],["un taxi","едно такси","Ecco un taxi!","il taxi"],["un aereo","един самолет","Ecco un aereo!","l’aereo"],["uno sport","един спорт","Ecco uno sport!","lo sport"],["una chiave","един ключ","Ecco una chiave!","la chiave"],["uno zaino","една раница","Ecco uno zaino!","lo zaino"],["un panino","един сандвич","Ecco un panino!","il panino"],["una pagina","една страница","Ecco una pagina!","la pagina"],["uno studente","един студент / един ученик","Ecco uno studente!","lo studente"],["una studentessa","една студентка / една ученичка","Ecco una studentessa!","la studentessa"],["un gelato","един сладолед","Ecco un gelato!","il gelato"],["una finestra","един прозорец","Ecco una finestra!","la finestra"],["un pesce","една риба","Ecco un pesce!","il pesce"],["una notte","една нощ","Ecco una notte!","la notte"],["una borsa","една чанта","Ecco una borsa!","la borsa"],["un ragazzo","едно момче","Ecco un ragazzo!","il ragazzo"],["una ragazza","едно момиче","Ecco una ragazza!","la ragazza"],["un albero","едно дърво","Ecco un albero!","l’albero"],["un’isola","един остров","Ecco un’isola!","l’isola"],["un libro","една книга","Ecco un libro!","il libro"],["un vestito","една рокля / един костюм / една дреха","Ecco un vestito!","il vestito"],["uno zio","един чичо / един вуйчо","Ecco uno zio!","lo zio"],["una zia","една леля","Ecco una zia!","la zia"],["una foto","една снимка","Ecco una foto!","la foto"],["una brasiliana","една бразилка","Ecco una brasiliana!","la brasiliana"],["un marocchino","един мароканец","Ecco un marocchino!","il marocchino"],["uno straniero","един чужденец","Ecco uno straniero!","lo straniero"],["una straniera","една чужденка","Ecco una straniera!","la straniera"],["un collega","един колега","Ecco un collega!","il collega"],["un amico","един приятел","Ecco un amico!","l’amico"],["un’amica","една приятелка","Ecco un’amica!","l’amica"],["un fratello","един брат","Ecco un fratello!","il fratello"],["una sorella","една сестра","Ecco una sorella!","la sorella"],["un nome","едно име","Ecco un nome!","il nome"],["un cognome","една фамилия","Ecco un cognome!","il cognome"],["un lavoro","една работа","Ecco un lavoro!","il lavoro"],["una lingua","един език","Ecco una lingua!","la lingua"],["una famiglia","едно семейство","Ecco una famiglia!","la famiglia"],["un compagno","един съученик / един другар","Ecco un compagno!","il compagno"],["una persona","един човек","Ecco una persona!","la persona"],["un professore","един преподавател","Ecco un professore!","il professore"],["un insegnante","един учител","Ecco un insegnante!","l’insegnante"],["un’ora","един час","Ecco un’ora!","l’ora"],["una testa","една глава","Ecco una testa!","la testa"],["una mano","една ръка (длан)","Ecco una mano!","la mano"],["un naso","един нос","Ecco un naso!","il naso"],["una bocca","една уста","Ecco una bocca!","la bocca"],["un viso","едно лице","Ecco un viso!","il viso"],["una barba","една брада","Ecco una barba!","la barba"],["una domanda","един въпрос","Ecco una domanda!","la domanda"],["una risposta","един отговор","Ecco una risposta!","la risposta"],["un messaggio","едно съобщение","Ecco un messaggio!","il messaggio"],["un appuntamento","една уговорена среща","Ecco un appuntamento!","l’appuntamento"],["una pizza","една пица","Ecco una pizza!","la pizza"],["una scuola","едно училище","Ecco una scuola!","la scuola"],["un gatto","една котка","Ecco un gatto!","il gatto"],["un giornale","един вестник","Ecco un giornale!","il giornale"],["una lavagna","една дъска","Ecco una lavagna!","la lavagna"],["un figlio","един син","Ecco un figlio!","il figlio"],["una canzone","една песен","Ecco una canzone!","la canzone"],["un caffè","едно кафе","Ecco un caffè!","il caffè"],["una nonna","една баба","Ecco una nonna!","la nonna"],["una cena","една вечеря","Ecco una cena!","la cena"],["un corso","един курс","Ecco un corso!","il corso"],["un uomo","един мъж / един човек","Ecco un uomo!","l’uomo"],["una storia","една история / един разказ","Ecco una storia!","la storia"],["un’idea","една идея","Ecco un’idea!","l’idea"],["un dialogo","един диалог","Ecco un dialogo!","il dialogo"],["un anno","една година","Ecco un anno!","l’anno"],["un attore","един актьор","Ecco un attore!","l’attore"],["un signore","един господин","Ecco un signore!","il signore"],["una signora","една госпожа","Ecco una signora!","la signora"],["un medico","един лекар","Ecco un medico!","il medico"],["un bar","един бар / едно кафене","Ecco un bar!","il bar"],["una farmacia","една аптека","Ecco una farmacia!","la farmacia"],["un giardino","една градина","Ecco un giardino!","il giardino"],["una lezione","един урок","Ecco una lezione!","la lezione"],["una lettera","едно писмо / една буква","Ecco una lettera!","la lettera"],["una porta","една врата","Ecco una porta!","la porta"],["un problema","един проблем","Ecco un problema!","il problema"],["un film","един филм","Ecco un film!","il film"],["un turista","един турист","Ecco un turista!","il turista"],["un’email","един имейл","Ecco un’email!","l’email"],["un bagno","една баня","Ecco un bagno!","il bagno"],["una cucina","една кухня","Ecco una cucina!","la cucina"],["un giorno","един ден","Ecco un giorno!","il giorno"],["una settimana","една седмица","Ecco una settimana!","la settimana"]],
+RN={"americani":"gli americani","argentini":"gli argentini","spagnole":"le spagnole","tedesche":"le tedesche","brasiliana":"la brasiliana","marocchino":"il marocchino","straniero":"lo straniero","straniera":"la straniera"},
+CATS=["Поздрави и фрази","Въпроси","Хора и семейство","Числа","Часове и дни","Места и транспорт","Храна и напитки","Дом и предмети","Училище и работа","Свободно време","Тяло и външност","Описания","Глаголи","Малки думи","Множествено число","Неопределителен член (un, uno, una, un’)"];
+const $=s=>document.querySelector(s),E=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// VER е вътрешен номер (не се показва). При всяко ново издание: VER+1, ред в NEWS и думите от урока в NEWW.
+const VER=10,IND_CAT=15,NEW_CAT=-2,
+ NEWS={9:'Нов урок: часове и дни, плюс отделна тема с неопределителния член (un, uno, una, un’).',
+  10:'Думите са подредени по теми и темата се вижда на картата. „Пиша“ приема само напълно верни отговори. Нова тема „Нови думи“ и избор на светли или тъмни цветове.'},
+ NEWW=new Set(["gli zii","il Colosseo","ti chiami","si chiama","venticinque","che ore sono?","che ora è?","è l’una","sono le nove","e un quarto","e mezza","meno un quarto","meno dieci","mezzogiorno","mezzanotte","all’una","alle nove","a che ora inizia?","a che ora finisce?","lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica","il lunedì","la domenica","il giorno","la settimana","che giorno è oggi?","che giorno era ieri?","era","iniziare","pranzare","cenare"]);
+let S={known:{},dir:'bg',mode:'all',cat:-1,shuf:false,custom:[],q:'',check:'pick',theme:'auto'},rank={},idx=0,msgMode=false,busy=false;
+try{const o=JSON.parse(localStorage.getItem('ipf1')||'{}');if(o&&typeof o==='object')Object.assign(S,o)}catch(e){}
+const PREV=S.v; // коя версия е виждал човекът досега (undefined = първо отваряне)
+function normalize(){
+ if(!S.known||typeof S.known!=='object'||Array.isArray(S.known))S.known={};if(!Array.isArray(S.custom))S.custom=[];
+ S.custom=S.custom.filter(c=>Array.isArray(c)&&typeof c[0]==='string'&&typeof c[1]==='string');
+ // v8: напредъкът се пази по самата дума, а не по позицията ѝ в списъка (за да не се разместват отметките при нови думи)
+ if(!(S.v>=8)){if(!(S.v>=5))S.check='pick';const k={};
+  for(const key in S.known){const n=+key;if(!Number.isInteger(n)||key===''){k[key]=1;continue}
+   if(n>=1000){const c=S.custom[n-1000];if(c)k['u:'+c[0]]=1}else if(D[n])k[D[n][0]]=1}
+  S.known=k}
+ // v9: думи, които вече се пишат с член (americani → gli americani); „Мои думи“ се премести след новите теми
+ if(!(S.v>=9)){for(const o in RN)if(S.known[o]){S.known[RN[o]]=1;delete S.known[o]}if(S.cat===11)S.cat=CATS.length}
+ if(S.v===9&&S.cat===13)S.cat=CATS.length;
+ // v10: темите са пренаредени – избраната тема се връща на „Всички“ (освен „Мои думи“)
+ if(S.v>=1&&S.v<10&&S.cat!==CATS.length)S.cat=-1;
+ S.v=VER;
+ if(!['bg','it'].includes(S.dir))S.dir='bg';if(!['all','todo','known'].includes(S.mode))S.mode='all';if(!['self','pick','type'].includes(S.check))S.check='pick';
+ if(!['auto','light','dark'].includes(S.theme))S.theme='auto';
+ if(!(Number.isInteger(S.cat)&&S.cat>=-2&&S.cat<=CATS.length))S.cat=-1;S.shuf=!!S.shuf;S.q=''}
+normalize();
+const persist=()=>{try{localStorage.setItem('ipf1',JSON.stringify(S))}catch(e){}};persist();
+// save = действие на потребителя: отбелязва кога е направено, за да спечели по-новото копие при синхронизация
+const save=()=>{S.t=Date.now();persist();queueRemote()};
+const BASE=D.map(x=>({id:x[0],it:x[0],bg:x[1],ex:x[2],cat:x[3],kind:'def'})),
+ INDI=IND.map(x=>({id:'un:'+x[3],it:x[0],bg:x[1],ex:x[2],cat:IND_CAT,kind:'ind',base:x[3]}));
+const items=()=>BASE.concat(INDI,S.custom.map(x=>({id:'u:'+x[0],it:x[0],bg:x[1],ex:x[2]||'',cat:CATS.length,kind:'own'})));
+const rk=id=>rank[id]??(rank[id]=Math.random());
+const inCat=x=>S.cat===-1||(S.cat===NEW_CAT?NEWW.has(x.base||x.it):x.cat===S.cat);
+const catName=x=>(x.cat===CATS.length?'Мои думи':CATS[x.cat]||'').replace(/ \(.*\)$/,'');
+function deck(){const q=S.q.trim().toLowerCase();
+ const a=items().filter(x=>inCat(x)&&(S.mode==='all'||(S.mode==='known')===!!S.known[x.id])&&(!q||(x.it+x.bg+x.ex).toLowerCase().includes(q)));
+ return S.shuf?a.sort((p,r)=>rk(p.id)-rk(r.id)):a}
+const SP='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const spk=t=>t?`<button class="spk" data-say="${E(t)}" aria-label="Чуй произношението">${SP}</button>`:'';
+// ── Произношение ──
+// iOS/Safari капани, които се заобикалят тук: cancel() точно преди speak() понякога „изяжда“ думата;
+// изказването се събира от паметта преди да прозвучи, ако няма референция към него; синтезът може да остане на пауза;
+// списъкът с гласове често идва празен в началото; на iPhone има шеговити гласове (Rocko, Grandma…), които не трябва да се избират.
+const HAS_TTS='speechSynthesis' in window&&'SpeechSynthesisUtterance' in window;
+let VO=[],curU=null,spkT=0,spkTry=0;
+const loadV=()=>{try{const l=speechSynthesis.getVoices();if(l&&l.length)VO=l}catch(e){}vinfo()};
+function vScore(v){const n=((v.name||'')+' '+(v.voiceURI||'')).toLowerCase();let s=0;
+ if(/premium/.test(n))s+=40;if(/enhanced|natural|neural/.test(n))s+=30;if(/google/.test(n))s+=20;
+ if(/alice|federica|luca|paola|emma|elsa|isabella|diego|cosimo|giorgio|lucia/.test(n))s+=10;
+ if(/eloquence|rocko|shelley|grandma|grandpa|eddy|flo\b|reed|sandy|compact|whisper|bells|bubbles|jester|organ|zarvox|trinoids/.test(n))s-=60;
+ if(v.localService)s+=2;return s}
+function itVoice(){return VO.filter(v=>/^it([-_]|$)/i.test(v.lang||'')).sort((a,b)=>vScore(b)-vScore(a))[0]}
+function vinfo(){const e=$('#vinfo');if(!e)return;
+ if(!HAS_TTS){e.textContent='Това приложение не поддържа произношение. Отвори картите в Safari или Chrome.';return}
+ if(!VO.length){e.textContent='Гласове: ще се проверят при първото натискане на говорителя.';return}
+ const v=itVoice();e.textContent=v?'Италиански глас: '+v.name+' ('+v.lang+')':'На това устройство няма италиански глас – думите ще се четат с друг. Добави италиански глас от настройките на телефона/компютъра.'}
+let nvShown=false;function noVoice(){if(nvShown||!VO.length)return;nvShown=true;vinfo();$('#ov').classList.add('on')}
+let tsT=0;function toast(m,ms){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(tsT);tsT=setTimeout(()=>t.hidden=true,ms||6000)}
+function speechFail(){spkTry++;toast(spkTry<2?'Не чух нищо? Провери звука и бутона за тих режим, после натисни пак.':'Произношението не тръгва тук. На iPhone отвори линка в Safari, на Android – в Chrome.',8000)}
+function say(t){if(!HAS_TTS){toast('Това приложение не поддържа произношение. Отвори картите в Safari или Chrome.');return}
+ t=String(t).replace(/(\p{L})[’'`](\p{L})/gu,'$1$2').replace(/…/g,'').replace(/\s+/g,' ').trim();if(!t)return;
+ const ss=window.speechSynthesis;loadV();const v=itVoice();
+ const go=()=>{try{const u=new SpeechSynthesisUtterance(t);u.lang=v?v.lang:'it-IT';if(v)u.voice=v;u.rate=.85;u.volume=1;u.pitch=1;
+   let started=false;u.onstart=()=>{started=true;spkTry=0;clearTimeout(spkT)};u.onend=()=>{clearTimeout(spkT);if(curU===u)curU=null};
+   u.onerror=e=>{clearTimeout(spkT);if(e&&/interrupted|canceled/.test(e.error||''))return;if(!started)speechFail()};
+   curU=u;ss.speak(u);try{if(ss.paused)ss.resume()}catch(e){}
+   clearTimeout(spkT);spkT=setTimeout(()=>{if(!started&&!ss.speaking)speechFail()},3500)}catch(e){speechFail()}};
+ if(ss.speaking||ss.pending){try{ss.cancel()}catch(e){}setTimeout(go,90)}else go();
+ if(!v)noVoice()}
+if(HAS_TTS){loadV();try{speechSynthesis.addEventListener('voiceschanged',loadV)}catch(e){}try{speechSynthesis.onvoiceschanged=loadV}catch(e){}[300,1200,3000].forEach(ms=>setTimeout(loadV,ms))}
+function message(title,text,btns){msgMode=true;const c=$('#card');c.className='card';
+ c.innerHTML=`<div class="face msg"><div class="w">${E(title)}</div><p>${E(text)}</p>`+btns.map((b,i)=>`<button class="pb${i?' sec':''}" data-b="${i}" style="max-width:280px">${E(b[0])}</button>`).join('')+'</div>';
+ c.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>btns[+b.dataset.b][1]())}
+function render(){_r();ui()}
+function _r(){const d=deck(),all=items(),kn=all.filter(x=>S.known[x.id]).length,c=$('#card');
+ $('#bar').style.width=(all.length?kn/all.length*100:0)+'%';$('#kn').textContent='Знам '+kn+'/'+all.length;
+ if(!d.length){$('#cnt').textContent='0 / 0';
+  if(S.mode==='todo'&&!S.q.trim()&&items().some(inCat))return message('Браво! 🎉',(S.cat===-1?'Знаеш всички думи.':'Знаеш всички думи в тази тема.'),[['Упражни ги пак',()=>{S.mode='all';save();sync();idx=0;retry=[];render()}]].concat(S.cat>=0?[['Всички теми',()=>{S.cat=-1;save();sync();idx=0;retry=[];render()}]]:[]));
+  return message('Няма карти','Промени филтъра или търсенето.',[['Покажи всички',()=>{S.mode='all';S.cat=-1;S.q='';$('#q').value='';save();sync();idx=0;retry=[];render()}]])}
+ if(idx>=d.length&&!(S.check==='pick'&&retry.length)){$('#cnt').textContent=d.length+' / '+d.length;const todo=all.filter(x=>!S.known[x.id]).length;
+  return message('Готово!','Знаеш '+kn+' от '+all.length+' думи.',[['Отначало',()=>{idx=0;render()}]].concat(todo&&S.mode==='all'?[['Само тези, които още уча',()=>{S.mode='todo';save();sync();idx=0;render()}]]:[]))}
+ const x=cur(d);if(!x){idx=d.length;retry=[];return _r()}
+ msgMode=false;const front=S.dir,back=front==='bg'?'it':'bg';$('#cnt').textContent=isRetry?'↻ Повторение':(idx+1)+' / '+d.length;
+ const sy=syn(x).map(y=>y.it),ct=`<span class="ctag">${E(catName(x))}${NEWW.has(x.base||x.it)?' <span class="new">ново</span>':''}</span>`;
+ const face=(k,rear)=>`<div class="face ${rear?'rear':'front'}"><span class="tag">${k==='bg'?'Български':'Italiano'}</span>${ct}`+(k==='bg'?`<div class="w">${E(x.bg)}</div>`:`<div class="w it">${E(x.it)}</div>${spk(x.it)}`+(rear&&sy.length?`<div class="syn">също: ${E(sy.join(', '))}</div>`:''))+(rear&&x.ex?`<div class="ex">${E(x.ex)}</div>${spk(x.ex)}`:'')+(rear||S.check!=='self'?'':'<div class="hint">докосни, за да обърнеш</div>')+'</div>';
+ c.className='card';c.innerHTML='<div class="in">'+face(front,0)+face(back,1)+'</div>'}
+function flip(){if(!msgMode&&S.check==='self')$('#card').classList.toggle('fl')}
+function mark(v){const d=deck();if(busy||msgMode||S.check!=='self'||idx>=d.length)return;busy=true;const x=d[idx],c=$('#card');
+ if(v)S.known[x.id]=1;else delete S.known[x.id];save();
+ c.style.transition='transform .2s,opacity .2s';c.style.transform=`translateX(${v?120:-120}%) rotate(${v?12:-12}deg)`;c.style.opacity=0;
+ setTimeout(()=>{busy=false;c.style.transition='none';c.style.transform='';c.style.opacity='';
+  if(!(S.mode==='todo'&&v)&&!(S.mode==='known'&&!v))idx++;render()},200)}
+const card=$('#card');let sx=null,dx=0;
+card.addEventListener('pointerdown',e=>{if(busy||msgMode||S.check!=='self'||e.target.closest('[data-say]'))return;sx=e.clientX;dx=0;try{card.setPointerCapture(e.pointerId)}catch(_){}card.style.transition='none'});
+card.addEventListener('pointermove',e=>{if(sx==null)return;dx=e.clientX-sx;card.style.transform=`translateX(${dx}px) rotate(${dx/25}deg)`});
+const up=()=>{if(sx==null)return;const d=dx;sx=null;
+ if(d>90)return mark(1);if(d<-90)return mark(0);
+ card.style.transition='transform .2s';card.style.transform='';if(Math.abs(d)<8)flip()};
+card.addEventListener('pointerup',up);card.addEventListener('pointercancel',()=>{sx=null;card.style.transform=''});
+card.addEventListener('click',e=>{const b=e.target.closest('[data-say]');if(b)say(b.dataset.say)});
+$('#yes').onclick=()=>mark(1);$('#no').onclick=()=>mark(0);
+$('#prev').onclick=()=>{if(!busy&&idx>0){idx--;render()}};
+document.addEventListener('keydown',e=>{if($('#ov').classList.contains('on')||/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+ if((e.key===' '||e.key==='Enter')&&e.target.closest&&e.target.closest('button'))return; // остави бутоните да се натискат с клавиатура
+ if(e.key==='ArrowRight')mark(1);else if(e.key==='ArrowLeft')mark(0);else if(e.key===' '||e.key==='Enter'){e.preventDefault();flip()}});
+// settings
+const cat=$('#cat');cat.innerHTML='<option value="-1">Всички теми</option><option value="-2">Нови думи (последен урок)</option>'+CATS.concat(['Мои думи']).map((c,i)=>`<option value="${i}">${E(c)}</option>`).join('');
+function sync(){document.querySelectorAll('.seg').forEach(s=>{const k=s.dataset.k,cur=k==='shuf'?(S.shuf?'1':'0'):S[k];s.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===cur))});cat.value=S.cat}
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{const k=b.parentNode.dataset.k;S[k]=k==='shuf'?b.dataset.v==='1':b.dataset.v;
+ if(k==='theme'){save();sync();applyTheme();return}
+ if(k==='shuf')rank={};save();sync();idx=0;retry=[];render()});
+// тема: „Авто“ следва телефона (или настройката на claude.ai, ако картите са отворени оттам)
+const HOST_THEME=document.documentElement.getAttribute('data-theme');
+function applyTheme(){const r=document.documentElement;if(S.theme==='light'||S.theme==='dark')r.setAttribute('data-theme',S.theme);else if(HOST_THEME)r.setAttribute('data-theme',HOST_THEME);else r.removeAttribute('data-theme')}
+if(S.theme!=='auto')applyTheme();
+cat.onchange=()=>{S.cat=+cat.value;save();idx=0;retry=[];render()};
+$('#q').oninput=e=>{S.q=e.target.value;idx=0;retry=[];render()};
+$('#gear').onclick=()=>{sync();vinfo();$('#ov').classList.add('on')};
+const closeSheet=()=>$('#ov').classList.remove('on');$('#close').onclick=closeSheet;$('#ov').onclick=e=>{if(e.target.id==='ov')closeSheet()};
+// (без alert/confirm – в някои приложения и в публикувания линк те не се показват)
+const addMsg=(m,ok)=>{const e=$('#addmsg');e.textContent=m;e.className='fm '+(ok?'ok':'bad')};
+$('#add').onclick=()=>{const a=$('#n1').value.trim(),b=$('#n2').value.trim();if(!a||!b){addMsg('Попълни италианската и българската дума.');return}
+ if(items().some(x=>cl(x.it)===cl(a))){addMsg('Тази дума вече я има в картите.');return}
+ S.custom.push([a,b,$('#n3').value.trim()]);save();['#n1','#n2','#n3'].forEach(s=>$(s).value='');addMsg('Добавена ✓ – виж темата „Мои думи“.',1);render()};
+let rsT=0;$('#reset').onclick=()=>{const b=$('#reset');
+ if(!b.classList.contains('warn')){b.classList.add('warn');b.textContent='Натисни пак, за да изчистиш всички отметки';rsT=setTimeout(()=>{b.classList.remove('warn');b.textContent='Изчисти напредъка'},4000);return}
+ clearTimeout(rsT);b.classList.remove('warn');S.known={};save();idx=0;retry=[];render();b.textContent='Изчистено ✓';setTimeout(()=>b.textContent='Изчисти напредъка',1600)};
+$('#vtest').onclick=()=>say('Ciao! Come stai? Sono le nove e mezza.');
+const TIP='Докосни картата, за да я обърнеш · плъзни надясно = знам, наляво = още уча';
+let ans=false,lastOk=false;
+function ui(){const ty=S.check==='type',pk=S.check==='pick';$('.actions').hidden=ty||pk||msgMode;$('#ans').hidden=!ty||msgMode;$('#opts').hidden=!pk||msgMode;$('#opts').innerHTML='';
+ $('#tip').textContent=ty?(S.dir==='bg'?'Напиши точно на италиански – с члена и ударенията':'Напиши точно на български'):pk?'Избери правилния вариант':TIP;if(msgMode)$('#tip').textContent='';
+ ans=false;const i=$('#ai');i.value='';i.disabled=false;$('#fb').textContent='';$('#chk').textContent='Провери';$('#sk').hidden=false;$('.ans .row').style.gridTemplateColumns='';
+ if(ty&&!msgMode){try{i.focus({preventScroll:true})}catch(e){}}
+ if(pk&&!msgMode){const x=cur(deck());if(x)buildOpts(x)}}
+const AR=/^(?:(?:il|lo|la|i|gli|le|un|uno|una)\s+|(?:l|un)')/;
+const cl=s=>String(s).toLowerCase().replace(/\s*[’'`´]\s*/g,"'").replace(/[àá]/g,'a').replace(/[èé]/g,'e').replace(/[ìí]/g,'i').replace(/[òó]/g,'o').replace(/[ùú]/g,'u').replace(/\(.*?\)/g,' ').replace(/[.,!?…\-]/g,' ').replace(/\s+/g,' ').trim();
+const alts=s=>s.split('/').map(cl).filter(Boolean).concat([cl(s)]);
+// синоними: само думи с ТОЧНО същия превод (живея → abitare и vivere)
+const bgKey=s=>String(s).replace(/\(.*?\)/g,'').replace(/[…?!.]+\s*$/,'').replace(/\s+/g,' ').trim();
+const syn=x=>{const b=bgKey(x.bg);return items().filter(y=>y.id!==x.id&&y.kind===x.kind&&bgKey(y.bg)===b)};
+// „Пиша“ приема само напълно верния отговор: членът, ударенията, апострофът и главните букви трябва да са точни.
+// Не се броят само: излишни интервали, видът апостроф (’ или ') и знакът в края (? ! . …).
+const sn=s=>String(s).normalize('NFC').replace(/[’'`´ʼ]/g,'’').replace(/\s+/g,' ').trim().replace(/\s*[?!.…]+$/,'').trim();
+const bgAlts=s=>{const a=String(s).split('/').map(t=>t.trim());return [s,...a,...a.map(t=>t.replace(/\s*\(.*?\)\s*/g,' '))].map(sn).filter(Boolean)};
+function match(u,x){if(!x)return false;const t=sn(u);if(!t)return false;
+ if(S.dir==='bg')return t===sn(x.it)||syn(x).some(y=>t===sn(y.it));
+ return bgAlts(x.bg).includes(t)}
+function finish(ok){const d=deck();if(ans||msgMode||idx>=d.length)return;const x=d[idx];ans=true;lastOk=ok;
+ $('#card').classList.add('fl');if(ok)S.known[x.id]=1;else delete S.known[x.id];save();
+ const typed=sn($('#ai').value),want=S.dir==='bg'?x.it:x.bg.split('/')[0].trim();
+ const f=$('#fb');f.innerHTML=ok?'Правилно ✓':(typed?'✗ Написа: '+hl(typed,sn(want))+'<br>Вярно: <b>'+E(want)+'</b>':'✗ Вярно: <b>'+E(want)+'</b>');f.className='fb '+(ok?'ok':'bad');
+ $('#ai').disabled=true;$('#sk').hidden=true;$('.ans .row').style.gridTemplateColumns='1fr';$('#chk').textContent='Напред'}
+
+$('#chk').onclick=()=>{if(ans)return nextAns();const v=$('#ai').value;if(!v.trim()){$('#ai').focus();return}finish(match(v,deck()[idx]))};
+let retry=[],steps=0,isRetry=false,curId=null;
+const AM={'il':'lo','lo':'il','la':'il','l’':'la','i':'gli','gli':'i','le':'la','uno':'un','una':'un','un’':'un'},
+ATIP={'il':'il – мъжки род, пред съгласна (il libro)','lo':'lo – мъжки род пред s+съгласна, z, gn, ps (lo studente, lo zaino)','la':'la – женски род (la casa)','l’':'l’ – пред гласна, за мъжки и женски род (l’amico, l’isola)','i':'i – мн. число на il (i libri)','gli':'gli – мн. число на lo и l’ (gli studenti, gli alberi)','le':'le – мн. число на женски род (le case)',
+ 'un':'un – мъжки род, пред съгласна и пред гласна, без апостроф (un libro, un amico)','uno':'uno – мъжки род пред s+съгласна, z, gn, ps (uno studente, uno zaino)',
+ 'una':'una – женски род пред съгласна (una casa)','un’':'un’ – женски род пред гласна, с апостроф (un’amica, un’idea)'};
+const RU=[[/([bcdfglmnprstz])\1/,s=>s.replace(/([bcdfglmnprstz])\1/,'$1'),'Двойна съгласна – пише се двойно и се чете по-дълго.'],
+ [/[àèéìòù]/,s=>s.replace(/à/,'a').replace(/[èé]/,'e').replace(/ì/,'i').replace(/ò/,'o').replace(/ù/,'u'),'Ударението се пише върху последната гласна (città, perché, caffè).'],
+ [/ch[ie]|gh[ie]/,s=>s.replace('ch','c').replace('gh','g'),'ch/gh пред i, e се четат к/г (chiave, spaghetti).'],
+ [/gn|gli|qu|sc/,s=>s.replace('gn','n').replace('gli','li').replace('qu','cu').replace('sc','s'),'Внимавай с gn, gli, qu, sc – имат особен звук и изписване.']];
+function hl(a,b){let i=0;while(i<a.length&&i<b.length&&a[i]===b[i])i++;let j=0;while(j<a.length-i&&j<b.length-i&&a[a.length-1-j]===b[b.length-1-j])j++;return E(a.slice(0,i))+'<mark>'+E(a.slice(i,a.length-j))+'</mark>'+E(a.slice(a.length-j))}
+function wrongIt(t){const m=t.match(/^(un’|uno|una|un|il|lo|la|l’|i|gli|le)\s?(.+)$/);
+ if(m&&(m[1].endsWith('’')||t[m[1].length]===' ')){const a=m[1],n=m[2],tip='Правилен член: '+ATIP[a];
+  // un + гласна → грешно un’ (апострофът е само за женски род); un + съгласна → uno/una
+  if(a==='un')return{w:/^[aeiouàèéìòùh]/i.test(n)?'un’'+n:(/ma$/.test(n)?'una ':'uno ')+n,tip};
+  return{w:AM[a]+' '+n,tip}}
+ for(const[re,f,h]of RU)if(re.test(t)){const w=f(t);if(w!==t)return{w,tip:h}}
+ const c=[...t];for(let i=1;i<c.length;i++){const v={e:'i',i:'e',o:'u',u:'o',a:'e'}[c[i]];if(v){c[i]=v;return{w:c.join(''),tip:'Внимавай с гласните – запомни точното изписване.'}}}
+ return{w:t+'o',tip:''}}
+function lev(a,b){const d=[];for(let i=0;i<=a.length;i++)d[i]=[i];for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length]}
+const core=t=>cl(t).replace(AR,'');
+// два превода се застъпват, ако имат еднакъв вариант или единият е начало на другия като цяла дума („италиански“ / „италиански език“)
+const ub=w=>w.replace(/^(един|една|едно) /,'');
+const overlap=(a,b)=>{const A=alts(a).map(ub),B=alts(b).map(ub);return A.some(w=>B.some(z=>w===z||w.startsWith(z+' ')||z.startsWith(w+' ')))};
+function neighbor(x){const c=core(x.it);let best=null,bd=1e9;for(const y of items()){if(y.id===x.id||overlap(x.bg,y.bg))continue;const d=lev(c,core(y.it))+(y.cat===x.cat?0:3)+((y.kind==='ind')===(x.kind==='ind')?0:6);if(d<bd){bd=d;best=y}}return best}
+function cur(d){isRetry=false;if(S.check==='pick'){const all=items();
+  while(retry.length&&!all.some(y=>y.id===retry[0].id))retry.shift();
+  if(retry.length&&(retry[0].due<=steps||idx>=d.length)){isRetry=true;return all.find(y=>y.id===retry[0].id)}}
+ return d[idx]}
+function nextAns(){if(S.check==='pick'){steps++;const rep=S.mode!=='known';
+  if(isRetry){const r=retry.shift();if(!lastOk&&rep)retry.push({id:r.id,due:steps+3})}
+  else{if(!lastOk&&rep)retry.push({id:curId,due:steps+3});if(!(S.mode==='todo'&&lastOk)&&!(S.mode==='known'&&!lastOk))idx++}}
+ else if(!(S.mode==='todo'&&lastOk)&&!(S.mode==='known'&&!lastOk))idx++;
+ render()}
+function buildOpts(x){curId=x.id;const toIt=S.dir==='bg',ok=toIt?x.it:x.bg;let bad,tip;
+ if(toIt){const w=wrongIt(x.it);bad=w.w;tip=w.tip}else{const nb=neighbor(x)||items().find(y=>y.id!==x.id&&cl(y.bg)!==cl(x.bg))||{it:'—',bg:'—'};bad=nb.bg;tip='„'+x.it+'“ значи „'+x.bg+'“, а „'+nb.it+'“ значи „'+nb.bg+'“. Думите си приличат – запомни разликата.'}
+ const o=[{t:ok,ok:1},{t:bad,ok:0}];if(Math.random()<.5)o.reverse();
+ const box=$('#opts');box.innerHTML='<div class="og">'+o.map((v,i)=>`<button class="opt" data-i="${i}">${E(v.t)}</button>`).join('')+'</div><div class="pf" id="pf"></div><button class="btn yes" id="nx" hidden>Напред</button>';
+ let tries=0,done=false;const pf=(m,c)=>{$('#pf').textContent=m;$('#pf').className='pf '+c};
+ box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(done)return;const v=o[+b.dataset.i];
+  if(!v.ok){tries++;b.disabled=true;b.classList.add('bad');pf('✗ Не точно – опитай другия вариант.','bad');return}
+  done=true;const first=!tries;ans=true;lastOk=first;
+  if(isRetry&&first&&S.mode==='todo'){const p=deck().findIndex(y=>y.id===x.id);if(p>=0&&p<idx)idx--}
+  if(first)S.known[x.id]=1;else delete S.known[x.id];save();
+  box.querySelectorAll('.opt').forEach((bb,i)=>{bb.disabled=true;if(o[i].ok)bb.classList.add('good');if(toIt)bb.innerHTML=hl(o[i].t,o[i].ok?bad:ok)});
+  pf(first?'✓ Правилно!':'✓ Така е – виж обяснението на картата.','ok');
+  $('#card').classList.add('fl');
+  if(!first){$('#card .rear').insertAdjacentHTML('beforeend','<div class="why">'+(toIt?'<b>'+hl(ok,bad)+'</b><br>':'')+E(tip)+'<br>↻ Ще я видиш пак след малко.<input id="cp" placeholder="Напиши я за запомняне" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>');
+   $('#cp').oninput=e=>e.target.classList.toggle('okk',match(e.target.value,x));
+   setTimeout(()=>{const r=$('#card .rear');if(r&&r.scrollHeight>r.clientHeight)r.scrollTo({top:r.scrollHeight,behavior:'smooth'})},480)}
+  $('#nx').hidden=false});
+ $('#nx').onclick=nextAns}
+
+$('#sk').onclick=()=>finish(false);
+$('#ai').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();$('#chk').click()}});
+document.addEventListener('keydown',e=>{if(ans&&e.key==='Enter'&&e.target.tagName!=='BUTTON'&&!$('#ov').classList.contains('on')){e.preventDefault();nextAns()}});
+// ── Синхронизация на напредъка ──
+// Само когато картите са отворени като линк в claude.ai и човекът е влязъл в профила си: напредъкът се пази и на сървъра
+// (личен за всеки), за да не се губи, ако браузърът изчисти данните. Като обикновен файл това просто се пропуска.
+let RDOC=null,rBusy=false,rAgain=false,rT=0;
+function queueRemote(){if(!RDOC)return;clearTimeout(rT);rT=setTimeout(pushRemote,1500)}
+async function pushRemote(){if(!RDOC)return;if(rBusy){rAgain=true;return}rBusy=true;
+ try{await RDOC.set(JSON.parse(JSON.stringify(Object.assign({},S,{q:''}))))}catch(e){if(e&&/invalid_argument|revoked|not_granted|capability/.test(e.code||''))RDOC=null}
+ rBusy=false;if(rAgain){rAgain=false;pushRemote()}}
+async function startRemote(){try{const c=window.claude;if(!c||typeof c.use!=='function')return;
+ const [db,us]=await Promise.all([c.use('db'),c.use('user')]);if(!db||!us)return;const uid=await us.id();if(!uid)return;
+ const ref=db.doc('data/users/'+uid+'/progress'),snap=await ref.get();RDOC=ref;const r=snap.exists?snap.data():null;
+ if(r&&(r.t||0)>(S.t||0)){const keep=S.q;Object.assign(S,JSON.parse(JSON.stringify(r)));normalize();S.q=keep;persist();applyTheme();sync();idx=0;retry=[];render()}
+ else if(S.t&&(!r||(r.t||0)<S.t))pushRemote()}catch(e){}}
+if(window.claude&&typeof window.claude.use==='function')startRemote();else addEventListener('load',()=>{if(window.claude&&typeof window.claude.use==='function')startRemote()},{once:true});
+// известие при обновление: показва се веднъж, само на хора, които вече са ползвали картите
+function showNews(from){const t=Object.keys(NEWS).map(Number).filter(v=>v>from&&v<=VER).sort((a,b)=>a-b).map(v=>NEWS[v]);
+ if(!t.length)return;$('#newsTxt').innerHTML='<b>Обновено</b><br>'+t.map(E).join('<br>');$('#news').hidden=false}
+$('#newsOk').onclick=()=>{$('#news').hidden=true};
+if(PREV>=1&&PREV<VER)showNews(PREV);
+sync();render();
+</script></body></html>
+
+</body></html>
