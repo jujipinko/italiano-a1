@@ -79,6 +79,7 @@ button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visibl
 .trn{font-size:clamp(18px,5.5vw,24px);line-height:1.2;color:var(--mute);margin-top:-6px;overflow-wrap:anywhere}
 .rear .trn{color:var(--backmute)}
 .trn::before{content:"[";opacity:.6}.trn::after{content:"]";opacity:.6}
+.sv{text-decoration:underline;text-decoration-thickness:.09em;text-underline-offset:.16em;text-decoration-skip-ink:none}
 .hk{color:var(--hl)}.rear .hk{color:var(--hlr)}.trn .hk{font-weight:700}
 .rules{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:4px}
 .rules td{padding:7px 6px;border-top:1px solid var(--line);vertical-align:top}
@@ -147,8 +148,9 @@ button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visibl
   <input id="n1" placeholder="Италиански (напр. la scuola)"><input id="n2" placeholder="Български (напр. училище)"><input id="n3" placeholder="Пример (по желание)">
   <button class="pb sec" id="add">Добави</button><div class="fm" id="addmsg" role="status"></div></details>
  <div class="grp"><label>Цветове</label><div class="seg" data-k="theme"><button data-v="auto">Авто</button><button data-v="light">Светла</button><button data-v="dark">Тъмна</button></div></div>
- <div class="grp"><label>Транскрипция (как се чете)</label><div class="seg" data-k="trn"><button data-v="1">Показвай</button><button data-v="0">Скрий</button></div></div>
+ <div class="grp"><label>Транскрипция и ударение</label><div class="seg" data-k="trn"><button data-v="1">Показвай</button><button data-v="0">Скрий</button></div></div>
  <details class="grp"><summary>📖 Правила за четене</summary><table class="rules">
+<tr><td><u class="sv">a</u></td><td>ударение</td><td>подчертаната гласна е ударената: <i>gel<u class="sv">a</u>to</i>, <i>m<u class="sv">u</u>sica</i>, <i>m<u class="sv">a</u>cchina</i></td></tr>
 <tr><td>ce, ci</td><td>че, чи</td><td><i>cena</i> – чена, <i>cinque</i> – чинкуе</td></tr>
 <tr><td>che, chi</td><td>ке, ки</td><td><i>perché</i> – перке, <i>chiave</i> – киаве</td></tr>
 <tr><td>cia, cio, ciu</td><td>ча, чо, чу</td><td>„i“ не се чете: <i>ciao</i> – чао</td></tr>
@@ -176,11 +178,12 @@ RN={"americani":"gli americani","argentini":"gli argentini","spagnole":"le spagn
 CATS=["Поздрави и фрази","Въпроси","Хора и семейство","Числа","Часове и дни","Места и транспорт","Храна и напитки","Дом и предмети","Училище и работа","Свободно време","Тяло и външност","Описания","Глаголи","Малки думи","Множествено число","Неопределителен член (un, uno, una, un’)"];
 const $=s=>document.querySelector(s),E=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 // VER е вътрешен номер (не се показва). При всяко ново издание: VER+1, ред в NEWS и думите от урока в NEWW.
-const VER=13,IND_CAT=15,NEW_CAT=-2,LRN_CAT=-3,GOAL=10,
+const VER=14,IND_CAT=15,NEW_CAT=-2,LRN_CAT=-3,GOAL=10,
  NEWS={9:'Нов урок: часове и дни, плюс отделна тема с неопределителния член (un, uno, una, un’).',
   10:'Думите са подредени по теми и темата се вижда на картата. „Пиша“ приема само напълно верни отговори. Нова тема „Нови думи“ и избор на светли или тъмни цветове.',
   11:'🎓 Ново: точките на картата показват колко пъти си отговорил вярно. След 10 верни отговора думата отива в „Научени“ и спира да излиза при ученето. Преговаряш ги от иконката горе вдясно → „Тема“ → „Научени“. Там можеш и да ги върнеш за учене.',
-  13:'🔤 Ново: под всяка италианска дума има транскрипция на български, а трудните букви (c/ch, g/gh, sc, gli, gn, z) са оцветени. Можеш да я скриеш и да видиш правилата за четене от иконката горе вдясно.',
+  14:'Ударената гласна вече е подчертана – и в италианската дума, и в транскрипцията (напр. в musica е подчертано u). Изключва се заедно с транскрипцията.',
+ 13:'🔤 Ново: под всяка италианска дума има транскрипция на български, а трудните букви (c/ch, g/gh, sc, gli, gn, z) са оцветени. Можеш да я скриеш и да видиш правилата за четене от иконката горе вдясно.',
  12:'Нов урок: Tempo libero – свободно време, места, глаголите andare и venire (vado, vieni…) и думи като spesso, stasera, mi piace.'},
  NEWW=new Set(["il tempo libero","i videogiochi","lo strumento","il violino","il pianoforte","il tango","la televisione","il gruppo musicale","la partita a carte","il concerto","la vacanza","gli interessi","l’attività","il teatro","la palestra","la piscina","il supermercato","l’università","l’aeroporto","il lago","in macchina","in autobus","fare","andare","venire","uscire","giocare","ballare","suonare","bere","amare","stare in forma","vado","vai","va","andiamo","andate","vanno","vengo","vieni","viene","veniamo","venite","vengono","la donna","i figli","la migliore amica","la pensione","impegnato","noioso","il fine settimana","stasera","adesso","spesso","qualche volta","due volte alla settimana","quest’anno","ogni","forse","insieme","però","qualcosa","un po’","molto","tanto","mi piace","non mi piace","e a te?","secondo me","il latte"]);
 let S={known:{},cnt:{},learned:{},dir:'bg',mode:'all',cat:-1,shuf:false,custom:[],q:'',check:'pick',theme:'auto',trn:'1'},rank={},idx=0,msgMode=false,busy=false,shown=null,lastGone=false;
@@ -235,20 +238,25 @@ function lv(x){if(S.learned[x.id])return '<div class="lv lrnd">🎓 Научен
 const lvUpd=x=>document.querySelectorAll('#card .lv').forEach(e=>e.outerHTML=lv(x));
 function unlearn(ids){ids.forEach(id=>{delete S.learned[id];delete S.cnt[id];delete S.known[id]});retry=retry.filter(r=>!ids.includes(r.id))}
 // ── Транскрипция: италиански → български (автоматично по правилата за четене) ──
-// Връща масив от сегменти {s: италиански текст, t: българска транскрипция, k: тип (труден звук) или ''}
+// Връща масив от сегменти {s: италиански текст, t: българска транскрипция, k: тип (труден звук) или '', st: ударена}
 const TR=(()=>{
 const V='aeiouàèéìíòóùú',FR='eièéìí',ACC='àèéìíòóùú';
 const VM={a:'а',e:'е',i:'и',o:'о',u:'у',à:'а',è:'е',é:'е',ì:'и',í:'и',ò:'о',ó:'о',ù:'у',ú:'у'};
 const CM={b:'б',d:'д',f:'ф',l:'л',m:'м',n:'н',p:'п',r:'р',t:'т',v:'в',k:'к',j:'дж',w:'у',y:'и',x:'кс'};
-// Изключения: [италиански къс, български, труден звук(1)]
-const OV={farmacia:[['farma','фарма'],['ci','ч',1],['a','иа']],email:[['email','имейл']],io:[['io','ио']],
- zio:[['z','ц',1],['io','ио']],zia:[['z','ц',1],['ia','иа']],zii:[['z','ц',1],['ii','ии']],
- mezza:[['me','ме'],['zz','ддз',1],['a','а']],mezzo:[['me','ме'],['zz','ддз',1],['o','о']],
- mezzanotte:[['me','ме'],['zz','ддз',1],['anotte','анотте']],mezzogiorno:[['me','ме'],['zz','ддз',1],['o','о'],['gi','дж',1],['orno','орно']],
- azzurri:[['a','а'],['zz','ддз',1],['urri','урри']],azzurro:[['a','а'],['zz','ддз',1],['urro','урро']]};
+// Изключения: [италиански къс, български, труден звук(1), ударение(1)]
+const OV={farmacia:[['farma','фарма'],['c','ч',1],['i','и',0,1],['a','а']],email:[['e','и'],['ma','ме',0,1],['il','йл']],io:[['i','и',0,1],['o','о']],
+ zio:[['z','ц',1],['i','и',0,1],['o','о']],zia:[['z','ц',1],['i','и',0,1],['a','а']],zii:[['z','ц',1],['i','и',0,1],['i','и']],
+ mezza:[['m','м'],['e','е',0,1],['zz','ддз',1],['a','а']],mezzo:[['m','м'],['e','е',0,1],['zz','ддз',1],['o','о']],
+ mezzanotte:[['me','ме'],['zz','ддз',1],['an','ан'],['o','о',0,1],['tte','тте']],mezzogiorno:[['me','ме'],['zz','ддз',1],['o','о'],['gi','дж',1],['o','о',0,1],['rno','рно']],
+ azzurri:[['a','а'],['zz','ддз',1],['u','у',0,1],['rri','рри']],azzurro:[['a','а'],['zz','ддз',1],['u','у',0,1],['rro','рро']],
+ maria:[['mar','мар'],['i','и',0,1],['a','а']]};
+// Думи с ударение на третата сричка от края
+const S3=new Set('musica opera cinema macchina autobus aereo pagina pagine isola isole albero alberi numeri numero simpatico simpatica simpatici difficile facile giovane giovani medico sabato domenica piccolo piccola libero libera lettera dialogo conoscere vivere scrivere leggere chiudere rispondere scendere essere prendere vengono abiti abito bulgaro bulgara undici dodici tredici quattordici quindici sedici uomini camera utile mobile telefono'.split(' '));
+// Служебни думи без ударение
+const NOST=new Set('una uno alle alla allo agli della delle degli dalla dalle'.split(' '));
 const isV=c=>!!c&&V.includes(c);
 function word(w){ // w – една дума (малки букви, без апостроф)
- if(OV[w])return {seg:OV[w].map(x=>({s:x[0],t:x[1],k:x[2]?'z':''})),whole:false};
+ if(OV[w])return {seg:OV[w].map(x=>({s:x[0],t:x[1],k:x[2]?'z':'',st:!!x[3]})),ov:true};
  const out=[];let i=0;const n=w.length;
  const push=(s,t,k,v,acc)=>out.push({s,t,k:k||'',v:!!v,acc:!!acc});
  const at=j=>w[j]||'';
@@ -301,28 +309,36 @@ function word(w){ // w – една дума (малки букви, без ап
   if(a&&b&&p&&a.v&&a.s.length===1&&b.s==='i'&&b.v&&!p.v&&!b.acc&&!a.acc)b.v=false}
  return {seg:out,whole:false};
 }
-function one(p,el){ // една дума без апостроф → сегменти
- const w=p.toLowerCase();const r=word(w);
+function stress(r,w,el,multi){
+ if(r.ov||(!el&&multi&&NOST.has(w)))return;const nuc=r.seg.filter(x=>x.v);if(nuc.length<2)return;
+ const ex=nuc.findIndex(x=>x.acc);const i=ex>=0?ex:(S3.has(w)?nuc.length-3:nuc.length-2);
+ if(nuc[Math.max(0,i)])nuc[Math.max(0,i)].st=true}
+function one(p,el,multi){ // една дума без апостроф → сегменти
+ const w=p.toLowerCase();const r=word(w);stress(r,w,el,multi);
  const segs=r.seg.map(x=>({...x}));
  if(r.whole){segs.forEach((x,j)=>x.s=j===0?p:'')}
  else{let pos=0;segs.forEach(x=>{const L=x.s.length;x.s=p.substr(pos,L);pos+=L});if(pos<p.length)segs[segs.length-1].s+=p.slice(pos)}
  if(p[0]!==p[0].toLowerCase()){const f=segs.find(x=>x.t);if(f)f.t=f.t[0].toUpperCase()+f.t.slice(1)}
  return segs}
-function tr(text,opt){opt=opt||{};const res=[];
+function tr(text,opt){opt=opt||{};const res=[],multi=text.trim().split(/\s+/).length>1;
  for(const p of text.split(/(\s+|[?!.,…]+)/)){if(!p)continue;
   if(/^\s+$/.test(p)||/^[?!.,…]+$/.test(p)){res.push({s:p,t:p,k:'',sep:true});continue}
   const m=p.match(/^([^’']*)([’'])(.*)$/); // l’opera, un’amica, un po’
   let segs;
-  if(m){const pre=m[1]?one(m[1]).map(x=>({...x,st:false})):[];segs=[...pre,{s:m[2],t:'',k:''},...(m[3]?one(m[3],true):[])]}
-  else segs=one(p);
+  if(m){const pre=m[1]?one(m[1],false,multi).map(x=>({...x,st:false})):[];segs=[...pre,{s:m[2],t:'',k:''},...(m[3]?one(m[3],true,multi):[])]}
+  else segs=one(p,false,multi);
   res.push(...segs)}
  return res;
 }
 return {tr};
 })();
 const trOn=()=>S.trn==='1';
-function itW(s){if(!trOn())return E(s);try{return TR.tr(s).map(x=>x.k?`<span class="hk">${E(x.s)}</span>`:E(x.s)).join('')}catch(e){return E(s)}}
-function trW(s){if(!trOn())return '';try{return '<div class="trn">'+TR.tr(s).map(x=>x.k?`<span class="hk">${E(x.t)}</span>`:E(x.t)).join('')+'</div>'}catch(e){return ''}}
+// ударената гласна се подчертава (последната гласна в сегмента)
+const UV=/[aeiouàèéìíòóùúаеиоуяюAEIOUАЕИОУЯЮ]/;
+function ul(str,on){if(!on)return E(str);const c=[...str];for(let i=c.length-1;i>=0;i--)if(UV.test(c[i]))return E(c.slice(0,i).join(''))+'<u class="sv">'+E(c[i])+'</u>'+E(c.slice(i+1).join(''));return E(str)}
+const segH=(x,f)=>{const t=ul(x[f],x.st);return x.k?`<span class="hk">${t}</span>`:t};
+function itW(s){if(!trOn())return E(s);try{return TR.tr(s).map(x=>segH(x,'s')).join('')}catch(e){return E(s)}}
+function trW(s){if(!trOn())return '';try{return '<div class="trn">'+TR.tr(s).map(x=>segH(x,'t')).join('')+'</div>'}catch(e){return ''}}
 const SP='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
 const spk=t=>t?`<button class="spk" data-say="${E(t)}" aria-label="Чуй произношението">${SP}</button>`:'';
 // ── Произношение ──
