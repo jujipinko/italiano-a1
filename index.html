@@ -86,9 +86,24 @@ button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visibl
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(480px,calc(100% - 32px));background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.4;box-shadow:0 8px 24px #0004;z-index:5}
 .fm{min-height:18px;font-size:13px;font-weight:600;margin-top:6px}.fm.ok{color:var(--g)}.fm.bad{color:var(--r)}
 .pb.warn{border-color:var(--r);color:var(--r);background:none}
+.toast{pointer-events:none}
+.lv{display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:var(--g)}
+.lv i{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;opacity:.5}
+.lv i.f{background:currentColor;opacity:1}
+.lv span{margin-left:4px;font-weight:700}
+.lv.lrnd{font-size:14px;font-weight:700}
+.rear .lv{color:var(--backink)}
+.lrn{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;padding:4px 4px 4px 12px;border:1.5px solid var(--g);border-radius:14px;background:var(--surf);font-size:14px;font-weight:600}
+.lrn .lnk{min-width:0;color:var(--g);font-weight:700;padding:8px;text-align:right}
+.lw{max-height:260px;overflow:auto;border:1.5px solid var(--line);border-radius:12px;margin-bottom:8px}
+.grp .lrow{display:flex;align-items:center;gap:10px;margin:0;padding:10px 12px;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink);cursor:pointer}
+.grp .lrow:last-child{border-bottom:0}
+.lrow input{width:22px;height:22px;margin:0;padding:0;flex:none;accent-color:var(--g)}
+.lrow small{color:var(--mute)}
+#lall{margin-top:8px}
 @media(max-height:760px){.face{gap:8px;padding:36px 16px 14px}.rear{padding-top:38px}.tag,.ctag{top:12px}.spk{width:38px;height:38px}
  .opt{min-height:50px}.btn{min-height:50px}.why{padding:8px 10px;font-size:13px}.why input{padding:8px 10px}}
-@media(max-height:620px){.w{font-size:26px}.ex{font-size:16px}.opt{min-height:44px;font-size:16px}}
+@media(max-height:620px){.w{font-size:26px}.ex{font-size:16px}.opt{min-height:44px;font-size:16px}.lv i{width:7px;height:7px}}
 @media(prefers-reduced-motion:reduce){.in,.prog i{transition:none}.opt.bad{animation:none}}
 </style></head><body>
 <noscript><style>.app{display:none!important}</style><div class="nojs"><b>Тук картите не могат да работят</b>Този преглед (например във Viber или „Файлове“ на iPhone) спира програмата в страницата.<br><br>Отвори линка към картите в Safari – там работят изцяло, с произношение.</div></noscript>
@@ -99,6 +114,7 @@ button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visibl
  <div class="prog"><i id="bar"></i></div>
  <div class="meta"><button class="lnk" id="prev">‹ Назад</button><span id="cnt"></span><span id="kn" style="min-width:64px;text-align:right"></span></div>
  <div class="stage"><div class="card" id="card" tabindex="0" aria-label="Карта – докосни, за да я обърнеш"></div></div>
+ <div class="lrn" id="lrn" hidden><span>🎓 Научена дума</span><button class="lnk" id="unl">↩ Върни я за учене</button></div>
  <div class="actions"><button class="btn no" id="no">Още уча</button><button class="btn yes" id="yes">Знам го</button></div>
  <div class="ans" id="ans" hidden><input id="ai" placeholder="Напиши отговора…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><div class="fb" id="fb"></div><div class="row"><button class="btn no" id="sk">Не знам</button><button class="btn yes" id="chk">Провери</button></div></div>
  <div id="opts" hidden></div>
@@ -113,6 +129,10 @@ button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visibl
  <div class="grp"><label>Как отбелязвам „знам“</label><div class="seg" data-k="check"><button data-v="self">Сама</button><button data-v="pick">Избирам</button><button data-v="type">Пиша</button></div></div>
  <div class="grp"><label for="cat">Тема</label><select id="cat"></select></div>
  <div class="grp"><label for="q">Търсене</label><input id="q" type="search" placeholder="дума на италиански или български" autocomplete="off"></div>
+ <details class="grp"><summary id="lsum">🎓 Научени думи</summary>
+  <div class="sub" style="margin:0 0 8px">Дума става „научена“ след 10 верни отговора и спира да излиза при ученето. Преговаряш ги от „Тема“ → „Научени“. Тук можеш да върнеш избрани или всички обратно за учене.</div>
+  <div class="lw" id="lw"></div>
+  <button class="pb sec" id="lsel">Върни избраните за учене</button><button class="pb sec" id="lall">Върни всички за учене</button><div class="fm" id="lmsg" role="status"></div></details>
  <details class="grp"><summary>Добави своя дума</summary>
   <input id="n1" placeholder="Италиански (напр. la scuola)"><input id="n2" placeholder="Български (напр. училище)"><input id="n3" placeholder="Пример (по желание)">
   <button class="pb sec" id="add">Добави</button><div class="fm" id="addmsg" role="status"></div></details>
@@ -129,15 +149,16 @@ RN={"americani":"gli americani","argentini":"gli argentini","spagnole":"le spagn
 CATS=["Поздрави и фрази","Въпроси","Хора и семейство","Числа","Часове и дни","Места и транспорт","Храна и напитки","Дом и предмети","Училище и работа","Свободно време","Тяло и външност","Описания","Глаголи","Малки думи","Множествено число","Неопределителен член (un, uno, una, un’)"];
 const $=s=>document.querySelector(s),E=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 // VER е вътрешен номер (не се показва). При всяко ново издание: VER+1, ред в NEWS и думите от урока в NEWW.
-const VER=10,IND_CAT=15,NEW_CAT=-2,
+const VER=11,IND_CAT=15,NEW_CAT=-2,LRN_CAT=-3,GOAL=10,
  NEWS={9:'Нов урок: часове и дни, плюс отделна тема с неопределителния член (un, uno, una, un’).',
-  10:'Думите са подредени по теми и темата се вижда на картата. „Пиша“ приема само напълно верни отговори. Нова тема „Нови думи“ и избор на светли или тъмни цветове.'},
+  10:'Думите са подредени по теми и темата се вижда на картата. „Пиша“ приема само напълно верни отговори. Нова тема „Нови думи“ и избор на светли или тъмни цветове.',
+  11:'🎓 Ново: точките на картата показват колко пъти си отговорил вярно. След 10 верни отговора думата отива в „Научени“ и спира да излиза при ученето. Преговаряш ги от иконката горе вдясно → „Тема“ → „Научени“. Там можеш и да ги върнеш за учене.'},
  NEWW=new Set(["gli zii","il Colosseo","ti chiami","si chiama","venticinque","che ore sono?","che ora è?","è l’una","sono le nove","e un quarto","e mezza","meno un quarto","meno dieci","mezzogiorno","mezzanotte","all’una","alle nove","a che ora inizia?","a che ora finisce?","lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica","il lunedì","la domenica","il giorno","la settimana","che giorno è oggi?","che giorno era ieri?","era","iniziare","pranzare","cenare"]);
-let S={known:{},dir:'bg',mode:'all',cat:-1,shuf:false,custom:[],q:'',check:'pick',theme:'auto'},rank={},idx=0,msgMode=false,busy=false;
+let S={known:{},cnt:{},learned:{},dir:'bg',mode:'all',cat:-1,shuf:false,custom:[],q:'',check:'pick',theme:'auto'},rank={},idx=0,msgMode=false,busy=false,shown=null,lastGone=false;
 try{const o=JSON.parse(localStorage.getItem('ipf1')||'{}');if(o&&typeof o==='object')Object.assign(S,o)}catch(e){}
 const PREV=S.v; // коя версия е виждал човекът досега (undefined = първо отваряне)
 function normalize(){
- if(!S.known||typeof S.known!=='object'||Array.isArray(S.known))S.known={};if(!Array.isArray(S.custom))S.custom=[];
+ for(const k of ['known','cnt','learned'])if(!S[k]||typeof S[k]!=='object'||Array.isArray(S[k]))S[k]={};if(!Array.isArray(S.custom))S.custom=[];
  S.custom=S.custom.filter(c=>Array.isArray(c)&&typeof c[0]==='string'&&typeof c[1]==='string');
  // v8: напредъкът се пази по самата дума, а не по позицията ѝ в списъка (за да не се разместват отметките при нови думи)
  if(!(S.v>=8)){if(!(S.v>=5))S.check='pick';const k={};
@@ -149,10 +170,13 @@ function normalize(){
  if(S.v===9&&S.cat===13)S.cat=CATS.length;
  // v10: темите са пренаредени – избраната тема се връща на „Всички“ (освен „Мои думи“)
  if(S.v>=1&&S.v<10&&S.cat!==CATS.length)S.cat=-1;
+ // v11: брояч на верните отговори; думите, отбелязани досега като „знам“, започват с 1 точка
+ if(!(S.v>=11))for(const k in S.known)if(!S.cnt[k]&&!S.learned[k])S.cnt[k]=1;
+ for(const k in S.cnt){const n=+S.cnt[k];if(!(n>0))delete S.cnt[k];else S.cnt[k]=Math.min(Math.floor(n),GOAL-1)}
  S.v=VER;
  if(!['bg','it'].includes(S.dir))S.dir='bg';if(!['all','todo','known'].includes(S.mode))S.mode='all';if(!['self','pick','type'].includes(S.check))S.check='pick';
  if(!['auto','light','dark'].includes(S.theme))S.theme='auto';
- if(!(Number.isInteger(S.cat)&&S.cat>=-2&&S.cat<=CATS.length))S.cat=-1;S.shuf=!!S.shuf;S.q=''}
+ if(!(Number.isInteger(S.cat)&&S.cat>=-3&&S.cat<=CATS.length))S.cat=-1;S.shuf=!!S.shuf;S.q=''}
 normalize();
 const persist=()=>{try{localStorage.setItem('ipf1',JSON.stringify(S))}catch(e){}};persist();
 // save = действие на потребителя: отбелязва кога е направено, за да спечели по-новото копие при синхронизация
@@ -161,11 +185,26 @@ const BASE=D.map(x=>({id:x[0],it:x[0],bg:x[1],ex:x[2],cat:x[3],kind:'def'})),
  INDI=IND.map(x=>({id:'un:'+x[3],it:x[0],bg:x[1],ex:x[2],cat:IND_CAT,kind:'ind',base:x[3]}));
 const items=()=>BASE.concat(INDI,S.custom.map(x=>({id:'u:'+x[0],it:x[0],bg:x[1],ex:x[2]||'',cat:CATS.length,kind:'own'})));
 const rk=id=>rank[id]??(rank[id]=Math.random());
-const inCat=x=>S.cat===-1||(S.cat===NEW_CAT?NEWW.has(x.base||x.it):x.cat===S.cat);
+const inTopic=x=>S.cat===-1||(S.cat===NEW_CAT?NEWW.has(x.base||x.it):x.cat===S.cat);
+// научените думи излизат само в „Научени“; във всички други теми се пропускат
+const inCat=x=>S.cat===LRN_CAT?!!S.learned[x.id]:!S.learned[x.id]&&inTopic(x);
 const catName=x=>(x.cat===CATS.length?'Мои думи':CATS[x.cat]||'').replace(/ \(.*\)$/,'');
-function deck(){const q=S.q.trim().toLowerCase();
- const a=items().filter(x=>inCat(x)&&(S.mode==='all'||(S.mode==='known')===!!S.known[x.id])&&(!q||(x.it+x.bg+x.ex).toLowerCase().includes(q)));
+const hasQ=(x,q)=>(x.it+x.bg+x.ex).toLowerCase().includes(q);
+function deck(){const q=S.q.trim().toLowerCase(),lr=S.cat===LRN_CAT;
+ const a=items().filter(x=>inCat(x)&&(lr||S.mode==='all'||(S.mode==='known')===!!S.known[x.id])&&(!q||hasQ(x,q)));
  return S.shuf?a.sort((p,r)=>rk(p.id)-rk(r.id)):a}
+const lrnItems=()=>items().filter(x=>S.learned[x.id]);
+// верен/грешен отговор: обновява „знам“ и брояча; връща true, ако думата току-що стана научена.
+// При преговор в „Научени“ нищо не се променя – връщането за учене е само ръчно.
+function score(x,ok){if(S.cat===LRN_CAT||S.learned[x.id])return false;
+ if(ok)S.known[x.id]=1;else delete S.known[x.id];if(!ok)return false;
+ const n=(S.cnt[x.id]||0)+1;if(n>=GOAL){delete S.cnt[x.id];S.learned[x.id]=Date.now();return true}
+ S.cnt[x.id]=n;return false}
+const inDeck=x=>deck().some(y=>y.id===x.id);
+function lv(x){if(S.learned[x.id])return '<div class="lv lrnd">🎓 Научена</div>';const n=Math.min(S.cnt[x.id]||0,GOAL);
+ return `<div class="lv" role="img" aria-label="Верни отговори: ${n} от ${GOAL}">${'<i class="f"></i>'.repeat(n)}${'<i></i>'.repeat(GOAL-n)}<span>${n}/${GOAL}</span></div>`}
+const lvUpd=x=>document.querySelectorAll('#card .lv').forEach(e=>e.outerHTML=lv(x));
+function unlearn(ids){ids.forEach(id=>{delete S.learned[id];delete S.cnt[id];delete S.known[id]});retry=retry.filter(r=>!ids.includes(r.id))}
 const SP='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
 const spk=t=>t?`<button class="spk" data-say="${E(t)}" aria-label="Чуй произношението">${SP}</button>`:'';
 // ── Произношение ──
@@ -199,28 +238,38 @@ function say(t){if(!HAS_TTS){toast('Това приложение не подд�
  if(ss.speaking||ss.pending){try{ss.cancel()}catch(e){}setTimeout(go,90)}else go();
  if(!v)noVoice()}
 if(HAS_TTS){loadV();try{speechSynthesis.addEventListener('voiceschanged',loadV)}catch(e){}try{speechSynthesis.onvoiceschanged=loadV}catch(e){}[300,1200,3000].forEach(ms=>setTimeout(loadV,ms))}
-function message(title,text,btns){msgMode=true;const c=$('#card');c.className='card';
+function message(title,text,btns){msgMode=true;shown=null;const c=$('#card');c.className='card';
  c.innerHTML=`<div class="face msg"><div class="w">${E(title)}</div><p>${E(text)}</p>`+btns.map((b,i)=>`<button class="pb${i?' sec':''}" data-b="${i}" style="max-width:280px">${E(b[0])}</button>`).join('')+'</div>';
  c.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>btns[+b.dataset.b][1]())}
 function render(){_r();ui()}
 function _r(){const d=deck(),all=items(),kn=all.filter(x=>S.known[x.id]).length,c=$('#card');
  $('#bar').style.width=(all.length?kn/all.length*100:0)+'%';$('#kn').textContent='Знам '+kn+'/'+all.length;
- if(!d.length){$('#cnt').textContent='0 / 0';
-  if(S.mode==='todo'&&!S.q.trim()&&items().some(inCat))return message('Браво! 🎉',(S.cat===-1?'Знаеш всички думи.':'Знаеш всички думи в тази тема.'),[['Упражни ги пак',()=>{S.mode='all';save();sync();idx=0;retry=[];render()}]].concat(S.cat>=0?[['Всички теми',()=>{S.cat=-1;save();sync();idx=0;retry=[];render()}]]:[]));
-  return message('Няма карти','Промени филтъра или търсенето.',[['Покажи всички',()=>{S.mode='all';S.cat=-1;S.q='';$('#q').value='';save();sync();idx=0;retry=[];render()}]])}
- if(idx>=d.length&&!(S.check==='pick'&&retry.length)){$('#cnt').textContent=d.length+' / '+d.length;const todo=all.filter(x=>!S.known[x.id]).length;
-  return message('Готово!','Знаеш '+kn+' от '+all.length+' думи.',[['Отначало',()=>{idx=0;render()}]].concat(todo&&S.mode==='all'?[['Само тези, които още уча',()=>{S.mode='todo';save();sync();idx=0;render()}]]:[]))}
+ const go=(o,keepQ)=>()=>{Object.assign(S,o);if(!keepQ){S.q='';$('#q').value=''}save();sync();idx=0;retry=[];render()},
+  toL=['Преговори научените',go({cat:LRN_CAT})],toAll=['Всички теми',go({cat:-1},1)],toLearn=['Към ученето',go({cat:-1})];
+ if(!d.length){$('#cnt').textContent='0 / 0';const q=S.q.trim().toLowerCase();
+  if(S.cat===LRN_CAT)return q?message('Няма карти','Няма научена дума с това търсене.',[['Изчисти търсенето',go({},0)]])
+   :message('Още няма научени думи','Когато отговориш вярно '+GOAL+' пъти на дума, тя идва тук за преговор.',[toLearn]);
+  const act=items().some(inCat),lh=items().some(x=>S.learned[x.id]&&inTopic(x));
+  if(!q&&!act&&lh)return message('Браво! 🎓',S.cat===-1?'Научи всички думи!':'Научи всички думи в тази тема.',[toL].concat(S.cat!==-1?[toAll]:[]));
+  if(S.mode==='todo'&&!q&&act)return message('Браво! 🎉',(S.cat===-1?'Знаеш всички думи.':'Знаеш всички думи в тази тема.'),[['Упражни ги пак',go({mode:'all'},1)]].concat(S.cat!==-1?[toAll]:[]));
+  if(q&&items().some(x=>S.learned[x.id]&&hasQ(x,q)))return message('Научена дума 🎓','Тази дума вече е в „Научени“.',[['Отвори „Научени“',go({cat:LRN_CAT},1)],['Изчисти търсенето',go({},0)]]);
+  return message('Няма карти','Промени филтъра или търсенето.',[['Покажи всички',go({mode:'all',cat:-1})]])}
+ if(idx>=d.length&&!(S.check==='pick'&&retry.length)){$('#cnt').textContent=d.length+' / '+d.length;
+  if(S.cat===LRN_CAT)return message('Готово!','Прегледа всички научени думи ('+d.length+').',[['Отначало',()=>{idx=0;render()}],toLearn]);
+  const todo=all.filter(x=>!S.known[x.id]).length,ln=lrnItems().length;
+  return message('Готово!','Знаеш '+kn+' от '+all.length+' думи.'+(ln?' Научени: '+ln+' 🎓':''),[['Отначало',()=>{idx=0;render()}]].concat(todo&&S.mode==='all'?[['Само тези, които още уча',()=>{S.mode='todo';save();sync();idx=0;render()}]]:[]))}
  const x=cur(d);if(!x){idx=d.length;retry=[];return _r()}
- msgMode=false;const front=S.dir,back=front==='bg'?'it':'bg';$('#cnt').textContent=isRetry?'↻ Повторение':(idx+1)+' / '+d.length;
+ msgMode=false;shown=x;const front=S.dir,back=front==='bg'?'it':'bg';$('#cnt').textContent=isRetry?'↻ Повторение':(idx+1)+' / '+d.length;
  const sy=syn(x).map(y=>y.it),ct=`<span class="ctag">${E(catName(x))}${NEWW.has(x.base||x.it)?' <span class="new">ново</span>':''}</span>`;
- const face=(k,rear)=>`<div class="face ${rear?'rear':'front'}"><span class="tag">${k==='bg'?'Български':'Italiano'}</span>${ct}`+(k==='bg'?`<div class="w">${E(x.bg)}</div>`:`<div class="w it">${E(x.it)}</div>${spk(x.it)}`+(rear&&sy.length?`<div class="syn">също: ${E(sy.join(', '))}</div>`:''))+(rear&&x.ex?`<div class="ex">${E(x.ex)}</div>${spk(x.ex)}`:'')+(rear||S.check!=='self'?'':'<div class="hint">докосни, за да обърнеш</div>')+'</div>';
+ const face=(k,rear)=>`<div class="face ${rear?'rear':'front'}"><span class="tag">${k==='bg'?'Български':'Italiano'}</span>${ct}`+(k==='bg'?`<div class="w">${E(x.bg)}</div>`:`<div class="w it">${E(x.it)}</div>${spk(x.it)}`+(rear&&sy.length?`<div class="syn">също: ${E(sy.join(', '))}</div>`:''))+(rear&&x.ex?`<div class="ex">${E(x.ex)}</div>${spk(x.ex)}`:'')+lv(x)+(rear||S.check!=='self'?'':'<div class="hint">докосни, за да обърнеш</div>')+'</div>';
  c.className='card';c.innerHTML='<div class="in">'+face(front,0)+face(back,1)+'</div>'}
 function flip(){if(!msgMode&&S.check==='self')$('#card').classList.toggle('fl')}
 function mark(v){const d=deck();if(busy||msgMode||S.check!=='self'||idx>=d.length)return;busy=true;const x=d[idx],c=$('#card');
- if(v)S.known[x.id]=1;else delete S.known[x.id];save();
+ const nl=score(x,v);save();const gone=!inDeck(x); // ако картата вече не е в тестето (знам/научена), следващата идва на нейното място
+ if(nl)toast('🎓 „'+x.it+'“ е научена! Вече е в „Научени“.',3500);
  c.style.transition='transform .2s,opacity .2s';c.style.transform=`translateX(${v?120:-120}%) rotate(${v?12:-12}deg)`;c.style.opacity=0;
  setTimeout(()=>{busy=false;c.style.transition='none';c.style.transform='';c.style.opacity='';
-  if(!(S.mode==='todo'&&v)&&!(S.mode==='known'&&!v))idx++;render()},200)}
+  if(!gone)idx++;render()},200)}
 const card=$('#card');let sx=null,dx=0;
 card.addEventListener('pointerdown',e=>{if(busy||msgMode||S.check!=='self'||e.target.closest('[data-say]'))return;sx=e.clientX;dx=0;try{card.setPointerCapture(e.pointerId)}catch(_){}card.style.transition='none'});
 card.addEventListener('pointermove',e=>{if(sx==null)return;dx=e.clientX-sx;card.style.transform=`translateX(${dx}px) rotate(${dx/25}deg)`});
@@ -235,8 +284,23 @@ document.addEventListener('keydown',e=>{if($('#ov').classList.contains('on')||/I
  if((e.key===' '||e.key==='Enter')&&e.target.closest&&e.target.closest('button'))return; // остави бутоните да се натискат с клавиатура
  if(e.key==='ArrowRight')mark(1);else if(e.key==='ArrowLeft')mark(0);else if(e.key===' '||e.key==='Enter'){e.preventDefault();flip()}});
 // settings
-const cat=$('#cat');cat.innerHTML='<option value="-1">Всички теми</option><option value="-2">Нови думи (последен урок)</option>'+CATS.concat(['Мои думи']).map((c,i)=>`<option value="${i}">${E(c)}</option>`).join('');
-function sync(){document.querySelectorAll('.seg').forEach(s=>{const k=s.dataset.k,cur=k==='shuf'?(S.shuf?'1':'0'):S[k];s.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===cur))});cat.value=S.cat}
+const cat=$('#cat');cat.innerHTML='<option value="-1">Всички теми</option><option value="-2">Нови думи (последен урок)</option><option value="-3">🎓 Научени</option>'+CATS.concat(['Мои думи']).map((c,i)=>`<option value="${i}">${E(c)}</option>`).join('');
+function sync(){document.querySelectorAll('.seg').forEach(s=>{const k=s.dataset.k,cur=k==='shuf'?(S.shuf?'1':'0'):S[k];s.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===cur))});
+ const n=lrnItems().length;cat.querySelector('option[value="-3"]').textContent='🎓 Научени ('+n+')';$('#lsum').textContent='🎓 Научени думи ('+n+')';cat.value=S.cat}
+// списък с научените думи в настройките (най-новите отгоре)
+function lrnList(){const L=lrnItems().sort((a,b)=>(+S.learned[b.id]||0)-(+S.learned[a.id]||0));
+ $('#lw').innerHTML=L.length?L.map(x=>`<label class="lrow"><input type="checkbox" value="${E(x.id)}"><span><b>${E(x.it)}</b> <small>– ${E(x.bg)}</small></span></label>`).join(''):'<div class="sub" style="padding:12px">Още няма научени думи.</div>';
+ $('#lsel').hidden=$('#lall').hidden=!L.length;$('#lw').hidden=false}
+const lmsg=(m,ok)=>{const e=$('#lmsg');e.textContent=m;e.className='fm '+(ok?'ok':'bad')};
+const afterUnl=()=>{save();idx=0;retry=[];lrnList();sync();render()};
+$('#lsel').onclick=()=>{const ids=[...document.querySelectorAll('#lw input:checked')].map(i=>i.value);
+ if(!ids.length)return lmsg('Отметни думите, които искаш да върнеш.');unlearn(ids);afterUnl();lmsg('Върнати за учене: '+ids.length+' ✓',1)};
+let laT=0;$('#lall').onclick=()=>{const b=$('#lall'),T='Върни всички за учене';
+ if(!b.classList.contains('warn')){b.classList.add('warn');b.textContent='Натисни пак, за да върнеш всички';clearTimeout(laT);laT=setTimeout(()=>{b.classList.remove('warn');b.textContent=T},4000);return}
+ clearTimeout(laT);b.classList.remove('warn');b.textContent=T;const n=lrnItems().length;unlearn(Object.keys(S.learned));afterUnl();lmsg('Върнати за учене: '+n+' ✓',1)};
+// бутонът под картата при преговор в „Научени“
+$('#unl').onclick=()=>{const x=shown;if(busy||!x||!S.learned[x.id])return;const p=deck().findIndex(y=>y.id===x.id);
+ unlearn([x.id]);save();if(p>=0&&p<idx)idx--;toast('↩ „'+x.it+'“ е върната за учене.',3500);sync();render()};
 document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{const k=b.parentNode.dataset.k;S[k]=k==='shuf'?b.dataset.v==='1':b.dataset.v;
  if(k==='theme'){save();sync();applyTheme();return}
  if(k==='shuf')rank={};save();sync();idx=0;retry=[];render()});
@@ -246,7 +310,7 @@ function applyTheme(){const r=document.documentElement;if(S.theme==='light'||S.t
 if(S.theme!=='auto')applyTheme();
 cat.onchange=()=>{S.cat=+cat.value;save();idx=0;retry=[];render()};
 $('#q').oninput=e=>{S.q=e.target.value;idx=0;retry=[];render()};
-$('#gear').onclick=()=>{sync();vinfo();$('#ov').classList.add('on')};
+$('#gear').onclick=()=>{sync();vinfo();lrnList();$('#lmsg').textContent='';$('#ov').classList.add('on')};
 const closeSheet=()=>$('#ov').classList.remove('on');$('#close').onclick=closeSheet;$('#ov').onclick=e=>{if(e.target.id==='ov')closeSheet()};
 // (без alert/confirm – в някои приложения и в публикувания линк те не се показват)
 const addMsg=(m,ok)=>{const e=$('#addmsg');e.textContent=m;e.className='fm '+(ok?'ok':'bad')};
@@ -254,12 +318,12 @@ $('#add').onclick=()=>{const a=$('#n1').value.trim(),b=$('#n2').value.trim();if(
  if(items().some(x=>cl(x.it)===cl(a))){addMsg('Тази дума вече я има в картите.');return}
  S.custom.push([a,b,$('#n3').value.trim()]);save();['#n1','#n2','#n3'].forEach(s=>$(s).value='');addMsg('Добавена ✓ – виж темата „Мои думи“.',1);render()};
 let rsT=0;$('#reset').onclick=()=>{const b=$('#reset');
- if(!b.classList.contains('warn')){b.classList.add('warn');b.textContent='Натисни пак, за да изчистиш всички отметки';rsT=setTimeout(()=>{b.classList.remove('warn');b.textContent='Изчисти напредъка'},4000);return}
- clearTimeout(rsT);b.classList.remove('warn');S.known={};save();idx=0;retry=[];render();b.textContent='Изчистено ✓';setTimeout(()=>b.textContent='Изчисти напредъка',1600)};
+ if(!b.classList.contains('warn')){b.classList.add('warn');b.textContent='Натисни пак – ще изчистиш отметките, точките и научените думи';clearTimeout(rsT);rsT=setTimeout(()=>{b.classList.remove('warn');b.textContent='Изчисти напредъка'},4000);return}
+ clearTimeout(rsT);b.classList.remove('warn');S.known={};S.cnt={};S.learned={};save();idx=0;retry=[];lrnList();sync();render();b.textContent='Изчистено ✓';setTimeout(()=>b.textContent='Изчисти напредъка',1600)};
 $('#vtest').onclick=()=>say('Ciao! Come stai? Sono le nove e mezza.');
 const TIP='Докосни картата, за да я обърнеш · плъзни надясно = знам, наляво = още уча';
 let ans=false,lastOk=false;
-function ui(){const ty=S.check==='type',pk=S.check==='pick';$('.actions').hidden=ty||pk||msgMode;$('#ans').hidden=!ty||msgMode;$('#opts').hidden=!pk||msgMode;$('#opts').innerHTML='';
+function ui(){const ty=S.check==='type',pk=S.check==='pick';$('.actions').hidden=ty||pk||msgMode;$('#lrn').hidden=S.cat!==LRN_CAT||msgMode;$('#ans').hidden=!ty||msgMode;$('#opts').hidden=!pk||msgMode;$('#opts').innerHTML='';
  $('#tip').textContent=ty?(S.dir==='bg'?'Напиши точно на италиански – с члена и ударенията':'Напиши точно на български'):pk?'Избери правилния вариант':TIP;if(msgMode)$('#tip').textContent='';
  ans=false;const i=$('#ai');i.value='';i.disabled=false;$('#fb').textContent='';$('#chk').textContent='Провери';$('#sk').hidden=false;$('.ans .row').style.gridTemplateColumns='';
  if(ty&&!msgMode){try{i.focus({preventScroll:true})}catch(e){}}
@@ -278,9 +342,9 @@ function match(u,x){if(!x)return false;const t=sn(u);if(!t)return false;
  if(S.dir==='bg')return t===sn(x.it)||syn(x).some(y=>t===sn(y.it));
  return bgAlts(x.bg).includes(t)}
 function finish(ok){const d=deck();if(ans||msgMode||idx>=d.length)return;const x=d[idx];ans=true;lastOk=ok;
- $('#card').classList.add('fl');if(ok)S.known[x.id]=1;else delete S.known[x.id];save();
+ $('#card').classList.add('fl');const nl=score(x,ok);save();lastGone=!inDeck(x);lvUpd(x);
  const typed=sn($('#ai').value),want=S.dir==='bg'?x.it:x.bg.split('/')[0].trim();
- const f=$('#fb');f.innerHTML=ok?'Правилно ✓':(typed?'✗ Написа: '+hl(typed,sn(want))+'<br>Вярно: <b>'+E(want)+'</b>':'✗ Вярно: <b>'+E(want)+'</b>');f.className='fb '+(ok?'ok':'bad');
+ const f=$('#fb');f.innerHTML=ok?'Правилно ✓'+(nl?' 🎓 Научена – отива в „Научени“.':''):(typed?'✗ Написа: '+hl(typed,sn(want))+'<br>Вярно: <b>'+E(want)+'</b>':'✗ Вярно: <b>'+E(want)+'</b>');f.className='fb '+(ok?'ok':'bad');
  $('#ai').disabled=true;$('#sk').hidden=true;$('.ans .row').style.gridTemplateColumns='1fr';$('#chk').textContent='Напред'}
 
 $('#chk').onclick=()=>{if(ans)return nextAns();const v=$('#ai').value;if(!v.trim()){$('#ai').focus();return}finish(match(v,deck()[idx]))};
@@ -312,10 +376,11 @@ function cur(d){isRetry=false;if(S.check==='pick'){const all=items();
   while(retry.length&&!all.some(y=>y.id===retry[0].id))retry.shift();
   if(retry.length&&(retry[0].due<=steps||idx>=d.length)){isRetry=true;return all.find(y=>y.id===retry[0].id)}}
  return d[idx]}
-function nextAns(){if(S.check==='pick'){steps++;const rep=S.mode!=='known';
-  if(isRetry){const r=retry.shift();if(!lastOk&&rep)retry.push({id:r.id,due:steps+3})}
-  else{if(!lastOk&&rep)retry.push({id:curId,due:steps+3});if(!(S.mode==='todo'&&lastOk)&&!(S.mode==='known'&&!lastOk))idx++}}
- else if(!(S.mode==='todo'&&lastOk)&&!(S.mode==='known'&&!lastOk))idx++;
+// lastGone: картата вече не е в тестето (стана „знам“ в „Още уча“, „още уча“ в „Знам“ или научена) – тогава idx не се мести
+function nextAns(){if(S.check==='pick'){steps++;const rep=S.cat===LRN_CAT||S.mode!=='known';
+  if(isRetry){const r=retry.shift();if(r&&!lastOk&&rep)retry.push({id:r.id,due:steps+3})}
+  else{if(!lastOk&&rep)retry.push({id:curId,due:steps+3});if(!lastGone)idx++}}
+ else if(!lastGone)idx++;
  render()}
 function buildOpts(x){curId=x.id;const toIt=S.dir==='bg',ok=toIt?x.it:x.bg;let bad,tip;
  if(toIt){const w=wrongIt(x.it);bad=w.w;tip=w.tip}else{const nb=neighbor(x)||items().find(y=>y.id!==x.id&&cl(y.bg)!==cl(x.bg))||{it:'—',bg:'—'};bad=nb.bg;tip='„'+x.it+'“ значи „'+x.bg+'“, а „'+nb.it+'“ значи „'+nb.bg+'“. Думите си приличат – запомни разликата.'}
@@ -325,11 +390,13 @@ function buildOpts(x){curId=x.id;const toIt=S.dir==='bg',ok=toIt?x.it:x.bg;let b
  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(done)return;const v=o[+b.dataset.i];
   if(!v.ok){tries++;b.disabled=true;b.classList.add('bad');pf('✗ Не точно – опитай другия вариант.','bad');return}
   done=true;const first=!tries;ans=true;lastOk=first;
-  if(isRetry&&first&&S.mode==='todo'){const p=deck().findIndex(y=>y.id===x.id);if(p>=0&&p<idx)idx--}
-  if(first)S.known[x.id]=1;else delete S.known[x.id];save();
+  const p=isRetry?deck().findIndex(y=>y.id===x.id):-1;
+  const nl=score(x,first);save();lastGone=!inDeck(x);
+  // повторение на по-ранна карта, която излезе от тестето → следващите се изместват с една назад
+  if(isRetry&&lastGone&&p>=0&&p<idx)idx--;
   box.querySelectorAll('.opt').forEach((bb,i)=>{bb.disabled=true;if(o[i].ok)bb.classList.add('good');if(toIt)bb.innerHTML=hl(o[i].t,o[i].ok?bad:ok)});
-  pf(first?'✓ Правилно!':'✓ Така е – виж обяснението на картата.','ok');
-  $('#card').classList.add('fl');
+  pf(first?'✓ Правилно!'+(nl?' 🎓 Научена – отива в „Научени“.':''):'✓ Така е – виж обяснението на картата.','ok');
+  $('#card').classList.add('fl');lvUpd(x);
   if(!first){$('#card .rear').insertAdjacentHTML('beforeend','<div class="why">'+(toIt?'<b>'+hl(ok,bad)+'</b><br>':'')+E(tip)+'<br>↻ Ще я видиш пак след малко.<input id="cp" placeholder="Напиши я за запомняне" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>');
    $('#cp').oninput=e=>e.target.classList.toggle('okk',match(e.target.value,x));
    setTimeout(()=>{const r=$('#card .rear');if(r&&r.scrollHeight>r.clientHeight)r.scrollTo({top:r.scrollHeight,behavior:'smooth'})},480)}
