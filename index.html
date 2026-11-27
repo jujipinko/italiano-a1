@@ -4,9 +4,9 @@
 <meta name="theme-color" content="#EEF1EA" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0F1713" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-capable" content="yes">
 <title>Италиански A1 – флашкарти</title><meta name="claude:viewport-fit-sides" content="cover">
 <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#EEF1EA;--surf:#fff;--ink:#1B2B22;--mute:#5B6B61;--line:#D3DBD0;--g:#1F6B4A;--gi:#fff;--r:#C23B31;--back:#17382B;--backink:#F4F1E6;--backmute:#A9C2B3;color-scheme:light}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1713;--surf:#18231D;--ink:#E8EFE9;--mute:#93A598;--line:#2A3A31;--g:#4CB383;--gi:#0B1A12;--r:#FF8076;--back:#E3EDDD;--backink:#12251B;--backmute:#4C6656;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0F1713;--surf:#18231D;--ink:#E8EFE9;--mute:#93A598;--line:#2A3A31;--g:#4CB383;--gi:#0B1A12;--r:#FF8076;--back:#E3EDDD;--backink:#12251B;--backmute:#4C6656;color-scheme:dark}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#EEF1EA;--surf:#fff;--ink:#1B2B22;--mute:#5B6B61;--line:#D3DBD0;--g:#1F6B4A;--gi:#fff;--r:#C23B31;--back:#17382B;--backink:#F4F1E6;--backmute:#A9C2B3;--hl:#B5650A;--hlr:#F2B544;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1713;--surf:#18231D;--ink:#E8EFE9;--mute:#93A598;--line:#2A3A31;--g:#4CB383;--gi:#0B1A12;--r:#FF8076;--back:#E3EDDD;--backink:#12251B;--backmute:#4C6656;--hl:#F2B544;--hlr:#9A5B00;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1713;--surf:#18231D;--ink:#E8EFE9;--mute:#93A598;--line:#2A3A31;--g:#4CB383;--gi:#0B1A12;--r:#FF8076;--back:#E3EDDD;--backink:#12251B;--backmute:#4C6656;--hl:#F2B544;--hlr:#9A5B00;color-scheme:dark}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0}
@@ -76,12 +76,22 @@ button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visibl
 .why input{width:100%;margin:8px 0 0;background:transparent;border:1.5px solid currentColor;color:inherit;font-size:16px}
 .why input.okk{border-color:#37b26c;box-shadow:0 0 0 2px #37b26c66}
 .syn{font-size:14px;opacity:.75;line-height:1.3}
+.trn{font-size:clamp(18px,5.5vw,24px);line-height:1.2;color:var(--mute);margin-top:-6px;overflow-wrap:anywhere}
+.rear .trn{color:var(--backmute)}
+.trn::before{content:"[";opacity:.6}.trn::after{content:"]";opacity:.6}
+.hk{color:var(--hl)}.rear .hk{color:var(--hlr)}.trn .hk{font-weight:700}
+.rules{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:4px}
+.rules td{padding:7px 6px;border-top:1px solid var(--line);vertical-align:top}
+.rules td:first-child{font-family:Georgia,serif;font-weight:700;white-space:nowrap}
+.rules td:nth-child(2){color:var(--hl);font-weight:700;white-space:nowrap}
+.rules td:last-child{color:var(--mute)}
+.rules i{font-style:normal;color:var(--ink)}
 .nojs{max-width:420px;margin:15vh auto 0;padding:20px;border:1.5px solid var(--g);border-radius:18px;background:var(--surf);color:var(--ink);font-size:16px;line-height:1.5}.nojs b{display:block;font-size:20px;margin-bottom:8px}
 .ctag{position:absolute;top:16px;right:20px;max-width:58%;font-size:12px;color:var(--mute);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rear .ctag{color:var(--backmute)}
 .new{background:#ffd966;color:#1b2b22;border-radius:6px;padding:0 5px;font-weight:700}
 .news{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;margin-top:8px;padding:10px 12px;border:1.5px solid var(--g);border-radius:14px;background:var(--surf);font-size:13px;line-height:1.4}
-.news .lnk{min-width:0;padding:2px 4px;color:var(--g);font-weight:700}
+.news .lnk{min-width:0;padding:2px 4px;color:var(--g);font-weight:700;flex:none}.news>div{flex:1;min-width:0}
 .fb b{color:var(--ink)}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(480px,calc(100% - 32px));background:var(--ink);color:var(--bg);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.4;box-shadow:0 8px 24px #0004;z-index:5}
 .fm{min-height:18px;font-size:13px;font-weight:600;margin-top:6px}.fm.ok{color:var(--g)}.fm.bad{color:var(--r)}
@@ -137,6 +147,23 @@ button:focus-visible,select:focus-visible,input:focus-visible,.card:focus-visibl
   <input id="n1" placeholder="Италиански (напр. la scuola)"><input id="n2" placeholder="Български (напр. училище)"><input id="n3" placeholder="Пример (по желание)">
   <button class="pb sec" id="add">Добави</button><div class="fm" id="addmsg" role="status"></div></details>
  <div class="grp"><label>Цветове</label><div class="seg" data-k="theme"><button data-v="auto">Авто</button><button data-v="light">Светла</button><button data-v="dark">Тъмна</button></div></div>
+ <div class="grp"><label>Транскрипция (как се чете)</label><div class="seg" data-k="trn"><button data-v="1">Показвай</button><button data-v="0">Скрий</button></div></div>
+ <details class="grp"><summary>📖 Правила за четене</summary><table class="rules">
+<tr><td>ce, ci</td><td>че, чи</td><td><i>cena</i> – чена, <i>cinque</i> – чинкуе</td></tr>
+<tr><td>che, chi</td><td>ке, ки</td><td><i>perché</i> – перке, <i>chiave</i> – киаве</td></tr>
+<tr><td>cia, cio, ciu</td><td>ча, чо, чу</td><td>„i“ не се чете: <i>ciao</i> – чао</td></tr>
+<tr><td>ge, gi</td><td>дже, джи</td><td><i>gelato</i> – джелато, <i>pagina</i> – паджина</td></tr>
+<tr><td>ghe, ghi</td><td>ге, ги</td><td><i>spaghetti</i> – спагетти</td></tr>
+<tr><td>gia, gio, giu</td><td>джа, джо, джу</td><td><i>giorno</i> – джорно</td></tr>
+<tr><td>sce, sci</td><td>ше, ши</td><td><i>pesce</i> – пеше, <i>piscina</i> – пишина</td></tr>
+<tr><td>gli</td><td>ли / ль</td><td><i>famiglia</i> – фамиля, <i>figlio</i> – фильо</td></tr>
+<tr><td>gn</td><td>нь</td><td><i>bagno</i> – баньо, <i>signora</i> – синьора</td></tr>
+<tr><td>z, zz</td><td>ц / дз</td><td><i>piazza</i> – пиацца, <i>zaino</i> – дзайно</td></tr>
+<tr><td>s между гласни</td><td>з</td><td><i>casa</i> – каза, <i>musica</i> – музика</td></tr>
+<tr><td>двойни букви</td><td>двойни</td><td><i>ufficio</i> – уффичо, <i>pizza</i> – пицца, <i>oggi</i> – одджи</td></tr>
+<tr><td>l</td><td>л</td><td>винаги светло, като в „лист“ – не като ў: <i>l’ufficio</i> – луффичо</td></tr>
+<tr><td>h</td><td>—</td><td>не се чете: <i>ho</i> – о, <i>hai</i> – ай</td></tr>
+</table></details>
  <div class="grp"><label>Произношение</label><div class="sub" id="vinfo" style="margin:0 0 8px"></div><button class="pb sec" id="vtest">Пробвай гласа</button></div>
  <button class="pb" id="close">Готово</button>
  <button class="pb sec" id="reset" style="margin-top:10px">Изчисти напредъка</button>
@@ -149,13 +176,14 @@ RN={"americani":"gli americani","argentini":"gli argentini","spagnole":"le spagn
 CATS=["Поздрави и фрази","Въпроси","Хора и семейство","Числа","Часове и дни","Места и транспорт","Храна и напитки","Дом и предмети","Училище и работа","Свободно време","Тяло и външност","Описания","Глаголи","Малки думи","Множествено число","Неопределителен член (un, uno, una, un’)"];
 const $=s=>document.querySelector(s),E=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 // VER е вътрешен номер (не се показва). При всяко ново издание: VER+1, ред в NEWS и думите от урока в NEWW.
-const VER=12,IND_CAT=15,NEW_CAT=-2,LRN_CAT=-3,GOAL=10,
+const VER=13,IND_CAT=15,NEW_CAT=-2,LRN_CAT=-3,GOAL=10,
  NEWS={9:'Нов урок: часове и дни, плюс отделна тема с неопределителния член (un, uno, una, un’).',
   10:'Думите са подредени по теми и темата се вижда на картата. „Пиша“ приема само напълно верни отговори. Нова тема „Нови думи“ и избор на светли или тъмни цветове.',
   11:'🎓 Ново: точките на картата показват колко пъти си отговорил вярно. След 10 верни отговора думата отива в „Научени“ и спира да излиза при ученето. Преговаряш ги от иконката горе вдясно → „Тема“ → „Научени“. Там можеш и да ги върнеш за учене.',
-  12:'Нов урок: Tempo libero – свободно време, места, глаголите andare и venire (vado, vieni…) и думи като spesso, stasera, mi piace.'},
+  13:'🔤 Ново: под всяка италианска дума има транскрипция на български, а трудните букви (c/ch, g/gh, sc, gli, gn, z) са оцветени. Можеш да я скриеш и да видиш правилата за четене от иконката горе вдясно.',
+ 12:'Нов урок: Tempo libero – свободно време, места, глаголите andare и venire (vado, vieni…) и думи като spesso, stasera, mi piace.'},
  NEWW=new Set(["il tempo libero","i videogiochi","lo strumento","il violino","il pianoforte","il tango","la televisione","il gruppo musicale","la partita a carte","il concerto","la vacanza","gli interessi","l’attività","il teatro","la palestra","la piscina","il supermercato","l’università","l’aeroporto","il lago","in macchina","in autobus","fare","andare","venire","uscire","giocare","ballare","suonare","bere","amare","stare in forma","vado","vai","va","andiamo","andate","vanno","vengo","vieni","viene","veniamo","venite","vengono","la donna","i figli","la migliore amica","la pensione","impegnato","noioso","il fine settimana","stasera","adesso","spesso","qualche volta","due volte alla settimana","quest’anno","ogni","forse","insieme","però","qualcosa","un po’","molto","tanto","mi piace","non mi piace","e a te?","secondo me","il latte"]);
-let S={known:{},cnt:{},learned:{},dir:'bg',mode:'all',cat:-1,shuf:false,custom:[],q:'',check:'pick',theme:'auto'},rank={},idx=0,msgMode=false,busy=false,shown=null,lastGone=false;
+let S={known:{},cnt:{},learned:{},dir:'bg',mode:'all',cat:-1,shuf:false,custom:[],q:'',check:'pick',theme:'auto',trn:'1'},rank={},idx=0,msgMode=false,busy=false,shown=null,lastGone=false;
 try{const o=JSON.parse(localStorage.getItem('ipf1')||'{}');if(o&&typeof o==='object')Object.assign(S,o)}catch(e){}
 const PREV=S.v; // коя версия е виждал човекът досега (undefined = първо отваряне)
 function normalize(){
@@ -176,7 +204,7 @@ function normalize(){
  for(const k in S.cnt){const n=+S.cnt[k];if(!(n>0))delete S.cnt[k];else S.cnt[k]=Math.min(Math.floor(n),GOAL-1)}
  S.v=VER;
  if(!['bg','it'].includes(S.dir))S.dir='bg';if(!['all','todo','known'].includes(S.mode))S.mode='all';if(!['self','pick','type'].includes(S.check))S.check='pick';
- if(!['auto','light','dark'].includes(S.theme))S.theme='auto';
+ if(!['auto','light','dark'].includes(S.theme))S.theme='auto';if(S.trn!=='0')S.trn='1';
  if(!(Number.isInteger(S.cat)&&S.cat>=-3&&S.cat<=CATS.length))S.cat=-1;S.shuf=!!S.shuf;S.q=''}
 normalize();
 const persist=()=>{try{localStorage.setItem('ipf1',JSON.stringify(S))}catch(e){}};persist();
@@ -206,6 +234,95 @@ function lv(x){if(S.learned[x.id])return '<div class="lv lrnd">🎓 Научен
  return `<div class="lv" role="img" aria-label="Верни отговори: ${n} от ${GOAL}">${'<i class="f"></i>'.repeat(n)}${'<i></i>'.repeat(GOAL-n)}<span>${n}/${GOAL}</span></div>`}
 const lvUpd=x=>document.querySelectorAll('#card .lv').forEach(e=>e.outerHTML=lv(x));
 function unlearn(ids){ids.forEach(id=>{delete S.learned[id];delete S.cnt[id];delete S.known[id]});retry=retry.filter(r=>!ids.includes(r.id))}
+// ── Транскрипция: италиански → български (автоматично по правилата за четене) ──
+// Връща масив от сегменти {s: италиански текст, t: българска транскрипция, k: тип (труден звук) или ''}
+const TR=(()=>{
+const V='aeiouàèéìíòóùú',FR='eièéìí',ACC='àèéìíòóùú';
+const VM={a:'а',e:'е',i:'и',o:'о',u:'у',à:'а',è:'е',é:'е',ì:'и',í:'и',ò:'о',ó:'о',ù:'у',ú:'у'};
+const CM={b:'б',d:'д',f:'ф',l:'л',m:'м',n:'н',p:'п',r:'р',t:'т',v:'в',k:'к',j:'дж',w:'у',y:'и',x:'кс'};
+// Изключения: [италиански къс, български, труден звук(1)]
+const OV={farmacia:[['farma','фарма'],['ci','ч',1],['a','иа']],email:[['email','имейл']],io:[['io','ио']],
+ zio:[['z','ц',1],['io','ио']],zia:[['z','ц',1],['ia','иа']],zii:[['z','ц',1],['ii','ии']],
+ mezza:[['me','ме'],['zz','ддз',1],['a','а']],mezzo:[['me','ме'],['zz','ддз',1],['o','о']],
+ mezzanotte:[['me','ме'],['zz','ддз',1],['anotte','анотте']],mezzogiorno:[['me','ме'],['zz','ддз',1],['o','о'],['gi','дж',1],['orno','орно']],
+ azzurri:[['a','а'],['zz','ддз',1],['urri','урри']],azzurro:[['a','а'],['zz','ддз',1],['urro','урро']]};
+const isV=c=>!!c&&V.includes(c);
+function word(w){ // w – една дума (малки букви, без апостроф)
+ if(OV[w])return {seg:OV[w].map(x=>({s:x[0],t:x[1],k:x[2]?'z':''})),whole:false};
+ const out=[];let i=0;const n=w.length;
+ const push=(s,t,k,v,acc)=>out.push({s,t,k:k||'',v:!!v,acc:!!acc});
+ const at=j=>w[j]||'';
+ while(i<n){const c=w[i],c1=at(i+1),c2=at(i+2),c3=at(i+3);
+  if(isV(c)){
+   // i като полугласна: след гласна → й; в началото пред гласна → й
+   if(c==='i'&&i>0&&'aeoàèéòó'.includes(at(i-1))){push(c,'й','',false);i++;continue}
+   if(c==='i'&&i===0&&isV(c1)){push(c,'й','',false);i++;continue}
+   // u след a/e (au, eu) и след q/g пред гласна → не е сричка
+   const glideU=c==='u'&&((i>0&&'ae'.includes(at(i-1)))||(i>0&&'qg'.includes(at(i-1))&&isV(c1))||(c1==='o'&&!/^(tuo|suo|tuoi|suoi|duo)$/.test(w)));
+   push(c,VM[c],'',!glideU,ACC.includes(c));i++;continue}
+  if(c==='h'){push(c,'','',false);i++;continue}
+  const dbl=c1===c; // удвоена съгласна
+  const L=dbl?2:1, nx=at(i+L), nx2=at(i+L+1), nx3=at(i+L+2);
+  // sc
+  if(c==='s'&&c1==='c'){
+   if(c2==='h'){push('sch','ск','k');i+=3;continue}
+   if(FR.includes(c2)){ if(c2==='i'&&isV(c3)&&c3!=='i'){push('sci','ш','sh');i+=3;continue} push('sc','ш','sh');i+=2;continue}
+   push('s','с');i++;continue}
+  if(c==='c'||c==='g'){
+   const s=w.substr(i,L);
+   if(nx==='h'){push(s+'h',(c==='c'?'к':'г').repeat(L),'k');i+=L+1;continue}
+   if(c==='g'&&!dbl&&c1==='l'&&c2==='i'){ // gli
+    const after=at(i+3);
+    if(after==='a'){push('glia','ля','gl',true);i+=4;continue}
+    if(after==='o'){push('glio','льо','gl',true);i+=4;continue}
+    if(after==='u'){push('gliu','лю','gl',true);i+=4;continue}
+    if(after==='e'){push('glie','ле','gl',true);i+=4;continue}
+    push('gli','ли','gl',true);i+=3;continue}
+   if(c==='g'&&!dbl&&c1==='n'){ // gn
+    const m={a:'ня',o:'ньо',u:'ню',e:'не',i:'ни',è:'не',ò:'ньо',à:'ня'}[c2];
+    if(m){push('gn'+c2,m,'gn',true,ACC.includes(c2));i+=3;continue}}
+   if(FR.includes(nx)){
+    const t=c==='c'?(dbl?'чч':'ч'):(dbl?'ддж':'дж'),k=c==='c'?'ch':'dj';
+    if(nx==='i'&&isV(nx2)&&nx2!=='i'){push(s+'i',t,k);i+=L+1;continue} // i е само знак за звука
+    push(s,t,k);i+=L;continue}
+   push(s,c==='c'?(dbl?'кк':'к'):(dbl?'гг':'г'),'');i+=L;continue}
+  if(c==='q'){push('q','к');i++;continue}
+  if(c==='z'){const s=w.substr(i,L);push(s,i===0?'дз':(dbl?'цц':'ц'),'z');i+=L;continue}
+  if(c==='s'){ // s пред звучна съгласна → з
+   if(!dbl&&'bdglmnrv'.includes(c1)&&c1){push('s','з');i++;continue}
+   if(!dbl&&i>0&&isV(at(i-1))&&isV(c1)&&!/^(stasera|buonasera)$/.test(w)){push('s','з');i++;continue} // casa → каза
+   push(w.substr(i,L),dbl?'сс':'с');i+=L;continue}
+  const t=CM[c];
+  if(t){push(w.substr(i,L),dbl&&t.length===1?t+t:t);i+=L;continue}
+  push(c,c);i++}
+ // крайно неударено -ia/-io/-ie/-iu след съгласна в дълга дума: i е полугласна
+ const nuc=out.filter(x=>x.v);
+ if(nuc.length>=3){const a=out[out.length-1],b=out[out.length-2],p=out[out.length-3];
+  if(a&&b&&p&&a.v&&a.s.length===1&&b.s==='i'&&b.v&&!p.v&&!b.acc&&!a.acc)b.v=false}
+ return {seg:out,whole:false};
+}
+function one(p,el){ // една дума без апостроф → сегменти
+ const w=p.toLowerCase();const r=word(w);
+ const segs=r.seg.map(x=>({...x}));
+ if(r.whole){segs.forEach((x,j)=>x.s=j===0?p:'')}
+ else{let pos=0;segs.forEach(x=>{const L=x.s.length;x.s=p.substr(pos,L);pos+=L});if(pos<p.length)segs[segs.length-1].s+=p.slice(pos)}
+ if(p[0]!==p[0].toLowerCase()){const f=segs.find(x=>x.t);if(f)f.t=f.t[0].toUpperCase()+f.t.slice(1)}
+ return segs}
+function tr(text,opt){opt=opt||{};const res=[];
+ for(const p of text.split(/(\s+|[?!.,…]+)/)){if(!p)continue;
+  if(/^\s+$/.test(p)||/^[?!.,…]+$/.test(p)){res.push({s:p,t:p,k:'',sep:true});continue}
+  const m=p.match(/^([^’']*)([’'])(.*)$/); // l’opera, un’amica, un po’
+  let segs;
+  if(m){const pre=m[1]?one(m[1]).map(x=>({...x,st:false})):[];segs=[...pre,{s:m[2],t:'',k:''},...(m[3]?one(m[3],true):[])]}
+  else segs=one(p);
+  res.push(...segs)}
+ return res;
+}
+return {tr};
+})();
+const trOn=()=>S.trn==='1';
+function itW(s){if(!trOn())return E(s);try{return TR.tr(s).map(x=>x.k?`<span class="hk">${E(x.s)}</span>`:E(x.s)).join('')}catch(e){return E(s)}}
+function trW(s){if(!trOn())return '';try{return '<div class="trn">'+TR.tr(s).map(x=>x.k?`<span class="hk">${E(x.t)}</span>`:E(x.t)).join('')+'</div>'}catch(e){return ''}}
 const SP='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
 const spk=t=>t?`<button class="spk" data-say="${E(t)}" aria-label="Чуй произношението">${SP}</button>`:'';
 // ── Произношение ──
@@ -262,7 +379,7 @@ function _r(){const d=deck(),all=items(),kn=all.filter(x=>S.known[x.id]).length,
  const x=cur(d);if(!x){idx=d.length;retry=[];return _r()}
  msgMode=false;shown=x;const front=S.dir,back=front==='bg'?'it':'bg';$('#cnt').textContent=isRetry?'↻ Повторение':(idx+1)+' / '+d.length;
  const sy=syn(x).map(y=>y.it),ct=`<span class="ctag">${E(catName(x))}${NEWW.has(x.base||x.it)?' <span class="new">ново</span>':''}</span>`;
- const face=(k,rear)=>`<div class="face ${rear?'rear':'front'}"><span class="tag">${k==='bg'?'Български':'Italiano'}</span>${ct}`+(k==='bg'?`<div class="w">${E(x.bg)}</div>`:`<div class="w it">${E(x.it)}</div>${spk(x.it)}`+(rear&&sy.length?`<div class="syn">също: ${E(sy.join(', '))}</div>`:''))+(rear&&x.ex?`<div class="ex">${E(x.ex)}</div>${spk(x.ex)}`:'')+lv(x)+(rear||S.check!=='self'?'':'<div class="hint">докосни, за да обърнеш</div>')+'</div>';
+ const face=(k,rear)=>`<div class="face ${rear?'rear':'front'}"><span class="tag">${k==='bg'?'Български':'Italiano'}</span>${ct}`+(k==='bg'?`<div class="w">${E(x.bg)}</div>`:`<div class="w it">${itW(x.it)}</div>${trW(x.it)}${spk(x.it)}`+(rear&&sy.length?`<div class="syn">също: ${E(sy.join(', '))}</div>`:''))+(rear&&x.ex?`<div class="ex">${E(x.ex)}</div>${spk(x.ex)}`:'')+lv(x)+(rear||S.check!=='self'?'':'<div class="hint">докосни, за да обърнеш</div>')+'</div>';
  c.className='card';c.innerHTML='<div class="in">'+face(front,0)+face(back,1)+'</div>'}
 function flip(){if(!msgMode&&S.check==='self')$('#card').classList.toggle('fl')}
 function mark(v){const d=deck();if(busy||msgMode||S.check!=='self'||idx>=d.length)return;busy=true;const x=d[idx],c=$('#card');
@@ -304,6 +421,7 @@ $('#unl').onclick=()=>{const x=shown;if(busy||!x||!S.learned[x.id])return;const 
  unlearn([x.id]);save();if(p>=0&&p<idx)idx--;toast('↩ „'+x.it+'“ е върната за учене.',3500);sync();render()};
 document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{const k=b.parentNode.dataset.k;S[k]=k==='shuf'?b.dataset.v==='1':b.dataset.v;
  if(k==='theme'){save();sync();applyTheme();return}
+ if(k==='trn'){save();sync();render();return}
  if(k==='shuf')rank={};save();sync();idx=0;retry=[];render()});
 // тема: „Авто“ следва телефона (или настройката на claude.ai, ако картите са отворени оттам)
 const HOST_THEME=document.documentElement.getAttribute('data-theme');
